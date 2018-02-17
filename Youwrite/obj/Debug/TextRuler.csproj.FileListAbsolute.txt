@@ -1,0 +1,193 @@
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\bin\Debug\TextRuler.exe
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\bin\Debug\TextRuler.pdb
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.Form1.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.Properties.Resources.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.Dialogs.dlgFind.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.exe
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\TextRuler\TextRuler\obj\Debug\TextRuler.pdb
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.exe
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.pdb
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\TextRuler.exe
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\TextRuler.pdb
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.Form1.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.Properties.Resources.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.Dialogs.dlgFind.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.Form2.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.TextRulerControl.TextRuler.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\ICU4NET.pdb
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\ICU4NETExtension.pdb
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\UserControl1.resx
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\UserControl1.cs
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\bin\Debug\UserControl1.Designer.cs
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.phrases.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.Form3.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Debug\TextRuler.Form4.resources
+E:\Copie de youwrite\TextRuler\obj\Debug\TextRuler.exe
+E:\Copie de youwrite\TextRuler\obj\Debug\TextRuler.pdb
+E:\Copie de youwrite\TextRuler\obj\Debug\ResolveA
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form1.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form2.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form3.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form4.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.search.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.phrases.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UserControl2.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UserControl3.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UsingControl.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.resx
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.cs
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.Designer.cs
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.Properties.Resources.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.TextRulerControl.TextRuler.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.Dialogs.dlgFind.resources
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.pdb
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.exe
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.pdb
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe.manifest
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.application
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.TrustInfo.xml
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.exe.manifest
+C:\Users\HAOUARI\Documents\Visual Studio 2008\Projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.application
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.exe
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.pdb
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\ResolveAssemblyReference.cache
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form1.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.Properties.Resources.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.Dialogs.dlgFind.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form2.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form3.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form4.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.search.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.TextRulerControl.TextRuler.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.phrases.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UserControl2.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UserControl3.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UsingControl.resources
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.resx
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.cs
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.Designer.cs
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe.manifest
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.application
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.pdb
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\StringParser.dll
+D:\VS projects\Youwrite20132\TextRuler\bin\Debug\WebResourceProvider.dll
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.TrustInfo.xml
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.exe.manifest
+D:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.application
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe.config
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.exe
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.pdb
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.resx
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.cs
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\UserControl1.Designer.cs
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe.manifest
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.application
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.exe
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\YouWrite.pdb
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\StringParser.dll
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\WebResourceProvider.dll
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.csprojResolveAssemblyReference.cache
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form1.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.Properties.Resources.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.Dialogs.dlgFind.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form2.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form3.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.Form4.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.search.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.TextRulerControl.TextRuler.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.phrases.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UserControl2.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UserControl3.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.UsingControl.resources
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.TrustInfo.xml
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.exe.manifest
+E:\VS projects\Youwrite20132\TextRuler\obj\Debug\YouWrite.application
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\System.Data.SQLite.dll
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\System.Data.SQLite.Linq.dll
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\SharpEntropy.dll
+E:\VS projects\Youwrite20132\TextRuler\bin\Debug\SharpEntropySqlite.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.Form1.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.Properties.Resources.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.Dialogs.dlgFind.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.Form2.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.Form3.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.Form4.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.search.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.TextRulerControl.TextRuler.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.phrases.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.UserControl2.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.UserControl3.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.UsingControl.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.TrustInfo.xml
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.exe
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.pdb
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\UserControl1.resx
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\UserControl1.cs
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\UserControl1.Designer.cs
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\YouWrite.exe.config
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\YouWrite.exe.manifest
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\YouWrite.application
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\YouWrite.exe
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\YouWrite.pdb
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\SharpEntropy.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\SharpEntropySqlite.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\StringParser.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\System.Data.SQLite.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\WebResourceProvider.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.csprojResolveAssemblyReference.cache
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.exe.manifest
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.application
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.Form5.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\TextRuler.Form6.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\obj\Debug\YouWrite.Form7.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2017full\TextRuler\bin\Debug\icu4j-3.8.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\YouWrite.exe.config
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.exe
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.pdb
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\UserControl1.resx
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\UserControl1.cs
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\UserControl1.Designer.cs
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\YouWrite.exe.manifest
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\YouWrite.application
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\YouWrite.exe
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\YouWrite.pdb
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\StringParser.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\WebResourceProvider.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\bin\Debug\icu4j-3.8.dll
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.csprojResolveAssemblyReference.cache
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.Form6.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.Form7.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.Properties.Resources.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.Dialogs.dlgFind.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.Form2.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.Form3.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.Form4.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.search.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.TextRulerControl.TextRuler.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.phrases.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.UserControl2.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.UserControl3.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.UsingControl.resources
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\TextRuler.csproj.GenerateResource.Cache
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.TrustInfo.xml
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.exe.manifest
+C:\Users\Research\Documents\Visual Studio 2015\Projects\VS projects\Youwrite2018\TextRuler\obj\Debug\YouWrite.application

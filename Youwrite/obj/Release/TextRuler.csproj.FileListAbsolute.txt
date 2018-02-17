@@ -1,0 +1,9 @@
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.Form1.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.Properties.Resources.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.Dialogs.dlgFind.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.Form2.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.TextRulerControl.TextRuler.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.phrases.resources
+C:\Documents and Settings\User\Mes documents\Visual Studio 2008\Projects\youwrite\TextRuler\obj\Release\TextRuler.csproj.GenerateResource.Cache
