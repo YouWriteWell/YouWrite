@@ -136,7 +136,14 @@ namespace YouWrite
             {
                 int id = createdb(textBox1.Text, textBox2.Text);
                Form4 form4 = new Form4(textBox1.Text, id);
-               // MessageBox.Show(id.ToString());
+                var screen = Screen.FromPoint(Cursor.Position);
+                form4.StartPosition = FormStartPosition.Manual;
+                form4.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - form4.Width / 2;
+                form4.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - form4.Height / 2;
+
+
+
+                // MessageBox.Show(id.ToString());
                 this.Hide();
                 form4.Show();
             }
@@ -145,7 +152,13 @@ namespace YouWrite
 
                 DataRow dr = DT.Rows[comboBox1.SelectedIndex];
 
+
                 Form4 form4 = new Form4(comboBox1.Text,Convert.ToInt32(dr[0].ToString()));
+                var screen = Screen.FromPoint(Cursor.Position);
+                form4.StartPosition = FormStartPosition.Manual;
+                form4.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - form4.Width / 2;
+                form4.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - form4.Height / 2;
+
                 this.Hide();
                 form4.Show();
 
@@ -165,6 +178,12 @@ namespace YouWrite
                 int id = createdb(textBox1.Text, textBox2.Text);
                 Form4 form4 = new Form4(textBox1.Text, id);
                 // MessageBox.Show(id.ToString());
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                form4.StartPosition = FormStartPosition.Manual;
+                form4.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - form4.Width / 2;
+                form4.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - form4.Height / 2;
+
                 this.Hide();
                 form4.Show();
             }
@@ -174,6 +193,11 @@ namespace YouWrite
                 DataRow dr = DT.Rows[comboBox1.SelectedIndex];
 
                 Form6 form6 = new Form6(comboBox1.Text, Convert.ToInt32(dr[0].ToString()));
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                form6.StartPosition = FormStartPosition.Manual;
+                form6.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - form6.Width / 2;
+                form6.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - form6.Height / 2;
                 this.Hide();
                 form6.Show();
 
@@ -191,6 +215,12 @@ namespace YouWrite
             {
                 int id = createdb(textBox1.Text, textBox2.Text);
                 Form4 form4 = new Form4(textBox1.Text, id);
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                form4.StartPosition = FormStartPosition.Manual;
+                form4.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - form4.Width / 2;
+                form4.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - form4.Height / 2;
+
                 // MessageBox.Show(id.ToString());
                 this.Hide();
                 form4.Show();
@@ -201,6 +231,12 @@ namespace YouWrite
                 DataRow dr = DT.Rows[comboBox1.SelectedIndex];
 
                 Form7 form7 = new Form7(comboBox1.Text, Convert.ToInt32(dr[0].ToString()));
+
+                var screen = Screen.FromPoint(Cursor.Position);
+                form7.StartPosition = FormStartPosition.Manual;
+                form7.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - form7.Width / 2;
+                form7.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - form7.Height / 2;
+
                 this.Hide();
                 form7.Show();
 

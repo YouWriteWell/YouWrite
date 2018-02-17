@@ -113,3 +113,4 @@ C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Debug\YouWrite.exe.
 C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Debug\YouWrite.application
 C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Debug\YouWrite.exe
 C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Debug\YouWrite.pdb
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Debug\YouWrite.csprojResolveAssemblyReference.cache

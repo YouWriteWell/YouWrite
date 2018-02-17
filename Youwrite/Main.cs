@@ -18,7 +18,7 @@ using System.Web;
 using AutocompleteMenuNS;
 using RavSoft.GoogleTranslator;
 using System.Text.RegularExpressions;
-//using AutoUpdaterDotNET;
+using AutoUpdaterDotNET;
 
 namespace YouWrite
 {
@@ -1725,6 +1725,10 @@ namespace YouWrite
         private void button6_Click(object sender, EventArgs e)
         {
             Form3 fr = new Form3();
+            var screen = Screen.FromPoint(Cursor.Position);
+            fr.StartPosition = FormStartPosition.Manual;
+            fr.Left = screen.Bounds.Left + screen.Bounds.Width / 2 - fr.Width / 2;
+            fr.Top = screen.Bounds.Top + screen.Bounds.Height / 2 - fr.Height / 2;
             fr.Show();
         }
 
