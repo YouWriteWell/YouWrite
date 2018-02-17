@@ -44,8 +44,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button6 = new System.Windows.Forms.Button();
@@ -95,9 +93,9 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.advancedTextEditor1 = new YouWrite.AdvancedTextEditorControl.AdvancedTextEditor();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.advancedTextEditor1 = new YouWrite.AdvancedTextEditorControl.AdvancedTextEditor();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -143,7 +141,7 @@
             this.label6.Cursor = System.Windows.Forms.Cursors.Cross;
             this.label6.Dock = System.Windows.Forms.DockStyle.Right;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(409, 3);
+            this.label6.Location = new System.Drawing.Point(398, 3);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 32);
@@ -225,10 +223,10 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton1.Location = new System.Drawing.Point(554, 6);
+            this.radioButton1.Location = new System.Drawing.Point(543, 6);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(66, 17);
+            this.radioButton1.Size = new System.Drawing.Size(65, 17);
             this.radioButton1.TabIndex = 26;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Attached";
@@ -239,7 +237,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton2.Location = new System.Drawing.Point(626, 6);
+            this.radioButton2.Location = new System.Drawing.Point(614, 6);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(91, 17);
@@ -247,31 +245,6 @@
             this.radioButton2.Text = "Not Attached";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "0"});
-            this.comboBox1.Location = new System.Drawing.Point(936, 6);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(45, 21);
-            this.comboBox1.TabIndex = 28;
-            this.comboBox1.Text = "0";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(831, 10);
-            this.label15.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(99, 22);
-            this.label15.TabIndex = 29;
-            this.label15.Text = "Number of words";
             // 
             // label16
             // 
@@ -329,9 +302,9 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(1019, 3);
+            this.button3.Location = new System.Drawing.Point(1007, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(106, 25);
+            this.button3.Size = new System.Drawing.Size(118, 25);
             this.button3.TabIndex = 36;
             this.button3.Text = "Search";
             this.button3.UseVisualStyleBackColor = true;
@@ -340,7 +313,7 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(987, 6);
+            this.textBox2.Location = new System.Drawing.Point(975, 6);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(26, 20);
@@ -351,7 +324,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkBox1.Location = new System.Drawing.Point(723, 10);
+            this.checkBox1.Location = new System.Drawing.Point(711, 10);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 17);
@@ -499,7 +472,7 @@
             this.panel3.Controls.Add(this.button10);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.textBox3);
-            this.panel3.Location = new System.Drawing.Point(8, 12);
+            this.panel3.Location = new System.Drawing.Point(8, 235);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(991, 462);
             this.panel3.TabIndex = 0;
@@ -797,8 +770,8 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Controls.Add(this.advancedTextEditor1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.advancedTextEditor1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -830,6 +803,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(221, 357);
             this.tableLayoutPanel3.TabIndex = 15;
             // 
+            // advancedTextEditor1
+            // 
+            this.advancedTextEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.advancedTextEditor1.Location = new System.Drawing.Point(3, 3);
+            this.advancedTextEditor1.Name = "advancedTextEditor1";
+            this.advancedTextEditor1.Size = new System.Drawing.Size(901, 357);
+            this.advancedTextEditor1.TabIndex = 16;
+            this.advancedTextEditor1.Load += new System.EventHandler(this.advancedTextEditor1_Load_1);
+            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
@@ -855,13 +837,11 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
             this.tableLayoutPanel5.Controls.Add(this.radioButton1, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox2, 6, 0);
-            this.tableLayoutPanel5.Controls.Add(this.comboBox1, 5, 0);
             this.tableLayoutPanel5.Controls.Add(this.radioButton2, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label15, 4, 0);
             this.tableLayoutPanel5.Controls.Add(this.button3, 7, 0);
             this.tableLayoutPanel5.Controls.Add(this.checkBox1, 3, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -871,15 +851,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(1128, 35);
             this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // advancedTextEditor1
-            // 
-            this.advancedTextEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.advancedTextEditor1.Location = new System.Drawing.Point(3, 3);
-            this.advancedTextEditor1.Name = "advancedTextEditor1";
-            this.advancedTextEditor1.Size = new System.Drawing.Size(901, 357);
-            this.advancedTextEditor1.TabIndex = 14;
-            this.advancedTextEditor1.Load += new System.EventHandler(this.advancedTextEditor1_Load);
             // 
             // Form2
             // 
@@ -947,8 +918,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button6;
@@ -998,8 +967,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private YouWrite.AdvancedTextEditorControl.AdvancedTextEditor advancedTextEditor1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private AdvancedTextEditorControl.AdvancedTextEditor advancedTextEditor1;
     }
 }

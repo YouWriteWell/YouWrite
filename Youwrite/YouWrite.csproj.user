@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>C:\Users\Research\Desktop\YouWrite\|C:\Users\Research\Desktop\WebSite\|publish\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Users\Research\Desktop\minprojects\DYouWrite\dist\|C:\Users\Research\Desktop\YouWrite\|C:\Users\Research\Desktop\WebSite\|publish\</PublishUrlHistory>
     <InstallUrlHistory>
     </InstallUrlHistory>
     <SupportUrlHistory>

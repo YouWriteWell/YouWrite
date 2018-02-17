@@ -21,22 +21,24 @@ namespace YouWrite
 {
     public partial class Form4 : Form
     {
+
+        private string appDir; // data directory 
         public Form4()
         {
             InitializeComponent();
+
+            appDir = Path.Combine(Environment.GetFolderPath(
+   Environment.SpecialFolder.ApplicationData), "YouWrite");
             dir = System.IO.Directory.GetCurrentDirectory();
 
-
             source = new SQLiteConnection
-   ("Data Source=" + dir + @"\databases\categories.db" + ";Version=3;New=False;Compress=True;");
-            mModelPath = dir + @"\Models\";
+              ("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
+
+
+            mModelPath = dir + @"\";
         }
         private OpenNLP.Tools.SentenceDetect.MaximumEntropySentenceDetector mSentenceDetector;
         private OpenNLP.Tools.Tokenize.EnglishMaximumEntropyTokenizer mTokenizer;
-        private OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger mPosTagger;
-        private OpenNLP.Tools.Chunker.EnglishTreebankChunker mChunker;
-        private OpenNLP.Tools.Parser.EnglishTreebankParser mParser;
-        private OpenNLP.Tools.NameFind.EnglishNameFinder mNameFinder;
         private string mModelPath;
 
         private SQLiteConnection sql_con;
@@ -142,7 +144,7 @@ namespace YouWrite
 
 
 
-            mModelPath = dir + @"\Models\";
+            mModelPath = dir + @"\";
             cat = category;
             this.Text ="Import documents ("+cat+")";
             

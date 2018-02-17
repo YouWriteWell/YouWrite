@@ -18,6 +18,7 @@ using System.Web;
 using AutocompleteMenuNS;
 using RavSoft.GoogleTranslator;
 using System.Text.RegularExpressions;
+//using AutoUpdaterDotNET;
 
 namespace YouWrite
 {
@@ -37,20 +38,20 @@ namespace YouWrite
       
         private OpenNLP.Tools.SentenceDetect.MaximumEntropySentenceDetector mSentenceDetector;
         private OpenNLP.Tools.Tokenize.EnglishMaximumEntropyTokenizer mTokenizer;
-        private OpenNLP.Tools.PosTagger.EnglishMaximumEntropyPosTagger mPosTagger;
-        private OpenNLP.Tools.Chunker.EnglishTreebankChunker mChunker;
-        private OpenNLP.Tools.Parser.EnglishTreebankParser mParser;
-        private OpenNLP.Tools.NameFind.EnglishNameFinder mNameFinder;
+  
         private string mModelPath;
        
         private string dir;
         private string appDir; // data directory 
+      
         TableLayoutPanel panel;
         public Form2()
         {
             InitializeComponent();
 
             this.MinimumSize = new Size(1300, 800);
+            dir = System.IO.Directory.GetCurrentDirectory();
+
 
             appDir = Path.Combine(Environment.GetFolderPath(
     Environment.SpecialFolder.ApplicationData), "YouWrite");
@@ -60,14 +61,15 @@ namespace YouWrite
                 Directory.CreateDirectory(appDir);
             }
 
-           if (!File.Exists(appDir+"categories.db"))
+           if (!File.Exists(Path.Combine(appDir, "categories.db")))
             {
-                File.Copy(dir+ @"\categories.db", appDir + "categories.db", true);
+                File.Copy(Path.Combine(dir, "categories.db"), Path.Combine(appDir,"categories.db"), true);
             }
 
-           if (!File.Exists(appDir + "model.db"))
+           if (!File.Exists(Path.Combine(appDir, "model.db")))
             {
-                File.Copy(@"model.db", appDir + "model.db", true);
+              
+                File.Copy(Path.Combine(dir, "model.db"), Path.Combine(appDir, "model.db"), true);
             }
 
 
@@ -80,21 +82,24 @@ namespace YouWrite
 
           
 
-            dir = System.IO.Directory.GetCurrentDirectory();
+          
             source2 = new SQLiteConnection
-    ("Data Source=" + dir + @"\categories.db" + ";Version=3;New=False;Compress=True;");
+    ("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
             
             source = new SQLiteConnection
-    ("Data Source=" + dir + @"\model.db" + ";Version=3;New=False;Compress=True;");
+    ("Data Source=" + Path.Combine(appDir, "model.db") + ";Version=3;New=False;Compress=True;");
            
             // MessageBox.Show(dir);
-            mModelPath = dir + @"\Models\";
+            mModelPath = dir;
             SetConnection();
             selectdb();
 
             advancedTextEditor1.textboxchanged += new EventHandler(textchanged);
             advancedTextEditor1.textboxclicked += new EventHandler(textboxclicked);
             advancedTextEditor1.keyup += new EventHandler(keyup);
+
+
+            //AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -207,7 +212,7 @@ namespace YouWrite
                 var dbName = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData),"YouWrite", id.ToString() + ".db");
 
-                File.Copy(@"databases\model.db", dbName, true);
+                File.Copy(appDir+@"\model.db", dbName, true);
             }
             //  sql_con.Close();
 
@@ -491,7 +496,7 @@ namespace YouWrite
         {
 
             source2 = new SQLiteConnection
-("Data Source=" + appDir + @"\categories.db" + ";Version=3;New=False;Compress=True;");
+("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
 
           
             source2.Open();
@@ -530,7 +535,7 @@ namespace YouWrite
         {
             if (mSentenceDetector == null)
             {
-                mSentenceDetector = new OpenNLP.Tools.SentenceDetect.EnglishMaximumEntropySentenceDetector(mModelPath + "EnglishSD.nbin");
+                mSentenceDetector = new OpenNLP.Tools.SentenceDetect.EnglishMaximumEntropySentenceDetector(mModelPath + @"\EnglishSD.nbin");
             }
 
             return mSentenceDetector.SentenceDetect(paragraph);
@@ -540,7 +545,7 @@ namespace YouWrite
         {
             if (mTokenizer == null)
             {
-                mTokenizer = new OpenNLP.Tools.Tokenize.EnglishMaximumEntropyTokenizer(mModelPath + "EnglishTok.nbin");
+                mTokenizer = new OpenNLP.Tools.Tokenize.EnglishMaximumEntropyTokenizer(mModelPath + @"\EnglishTok.nbin");
             }
 
             return mTokenizer.Tokenize(sentence);
@@ -981,14 +986,6 @@ namespace YouWrite
 
         private void updatecombo(int n) 
         {
-            comboBox1.Items.Clear();
-            comboBox1.Items.Add(0);
-
-            for (int i = 1; i <= n; i++)
-            {
-                comboBox1.Items.Add(i);
-            }
-            comboBox1.SelectedIndex = 0;
            
         }
         DateTime starttime=DateTime.Now;
@@ -1160,7 +1157,7 @@ namespace YouWrite
             //panel1.Controls.Clear();
            
             string[] words = TokenizeSentence(removes(advancedTextEditor1.TextEditor.Text));
-            int numberofwords = Convert.ToInt32(comboBox1.SelectedItem);
+            int numberofwords = 0;
             //MessageBox.Show(numberofwords.ToString());
             string txt="";
             int start = 0;
@@ -1740,7 +1737,7 @@ namespace YouWrite
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             source2 = new SQLiteConnection
-("Data Source=" + dir + @"\databases\categories.db" + ";Version=3;New=False;Compress=True;");
+("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
             source2.Open();
             //SetConnection();
             sql_cmd = source2.CreateCommand();
@@ -2251,6 +2248,16 @@ Environment.SpecialFolder.ApplicationData), "YouWrite", dr[0].ToString() + ".db"
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void phrases1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void advancedTextEditor1_Load_1(object sender, EventArgs e)
         {
 
         }

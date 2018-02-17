@@ -14,12 +14,17 @@ namespace YouWrite
     public partial class Form3 : Form
     {
         string dir;
+        private string appDir; // data directory 
+        
         public Form3()
         {
             InitializeComponent();
             dir = System.IO.Directory.GetCurrentDirectory();
+            appDir = Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.ApplicationData), "YouWrite");
             source = new SQLiteConnection
-   ("Data Source=" + dir + @"\databases\categories.db" + ";Version=3;New=False;Compress=True;");
+    ("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
+
             SetConnection();
             selectdb();
         }
@@ -112,7 +117,7 @@ namespace YouWrite
                 var dbName = Path.Combine(Environment.GetFolderPath(
      Environment.SpecialFolder.ApplicationData), "YouWrite", id.ToString() + ".db");
 
-                File.Copy(@"databases\model.db", dbName, true);
+                File.Copy(Path.Combine(appDir,"model.db"), dbName, true);
             
             CloseConnection();
                 SetConnection();
