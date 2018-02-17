@@ -1,0 +1,17 @@
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\bin\Release\YouWrite.exe.config
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Form6.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Form7.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Properties.Resources.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Dialogs.dlgFind.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Form2.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Form3.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.Form4.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.search.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.TextRulerControl.TextRuler.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.phrases.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.UserControl2.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.UserControl3.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.UsingControl.resources
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.csproj.GenerateResource.Cache
+C:\Users\Research\Desktop\minprojects\DYouWrite\YouWrite\obj\Release\YouWrite.csprojResolveAssemblyReference.cache
