@@ -12,7 +12,7 @@ This is the first verison of YouWrite.
 
 - Download Youwrite 1.0.0.0 installer: [Download](https://github.com/nhaouari/YouWrite/raw/master/dist/YouWrite.exe "YouWrite"). 
 
-# Prequisis
+# Prerequisites 
 - Windows (Not tested for other operating systems).
 - Dot net 4.0.0.
 
