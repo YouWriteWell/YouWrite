@@ -17,8 +17,8 @@ For that, YouWrite uses local documents (PDFs, papers,books and so on) to index 
 
 ## Used libs : 
 * *PDFBOX* : Library used to convert PDF to Text.  [Website](http://www.squarepdf.net/pdfbox-in-net "pdfbox-in-net").
-* *OpenNLP* : Library used in NLP. [Website] (https://sharpnlp.codeplex.com/ "sharpnlp"). 
-* *Advanced-Text-Editor*: The text editor used on YouWrite. For more information: [Article] (http://www.codeproject.com/Articles/22783/Advanced-Text-Editor-with-Ruler "Advanced-Text-Editor")
+* *OpenNLP* : Library used in NLP. [Website](https://sharpnlp.codeplex.com/ "sharpnlp"). 
+* *Advanced-Text-Editor*: The text editor used on YouWrite. For more information: [Article](http://www.codeproject.com/Articles/22783/Advanced-Text-Editor-with-Ruler "Advanced-Text-Editor")
 * *Autocomplete* : The autocomplete user compnent: [Article](http://www.codeproject.com/Articles/365974/Autocomplete-Menu "Autocomplete-Menu")
 
 ## Database 
