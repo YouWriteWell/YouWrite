@@ -11,7 +11,7 @@ For that, YouWrite uses local documents (PDFs, papers,books and so on) to index 
 - Dot net 4.0.0 works on windows.
 
 # Install 
-- Download Youwrite from  dist/youwrite.exe. 
+- Download Youwrite installer: [Download](https://github.com/nhaouari/YouWrite/raw/master/dist/YouWrite.exe "YouWrite"). 
 
 # Development 
 
