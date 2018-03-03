@@ -3,5 +3,5 @@
     <version>1.0.0.0</version>
     <url>https://github.com/haouarin/youwrite/dist/youwrite.exe</url>
     <changelog>https://github.com/haouarin/youwrite/releases</changelog>
-    <mandatory>false</mandatory>
+    <mandatory>true</mandatory>
 </item>

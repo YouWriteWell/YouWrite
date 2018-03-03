@@ -99,7 +99,7 @@ namespace YouWrite
             advancedTextEditor1.keyup += new EventHandler(keyup);
 
 
-            //AutoUpdater.Start("http://rbsoft.org/updates/AutoUpdaterTest.xml");
+            AutoUpdater.Start("https://raw.githubusercontent.com/nhaouari/YouWrite/master/version.xml");
         }
 
         private void button1_Click(object sender, EventArgs e)
