@@ -4,8 +4,8 @@
  
   !define MUI_PRODUCT "YouWrite"
   !define MUI_FILE "savefile"
-  !define MUI_VERSION "1.0.0.0"
-  !define MUI_BRANDINGTEXT "YouWrite Ver. 1.0.0.0"
+  !define MUI_VERSION "1.0.0.1"
+  !define MUI_BRANDINGTEXT "YouWrite Ver. 1.0.0.1"
   !define MUI_PUBLISHER "YouWrite"
   !define MUI_WEB_SITE "http://www.YouWrite.CC"
   !define MUI_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\YouWrite.exe"
