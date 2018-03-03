@@ -144,7 +144,7 @@ namespace YouWrite
 
 
 
-            mModelPath = @"\";
+            mModelPath = dir + @"\";
             cat = category;
             this.Text ="Import documents ("+cat+")";
             

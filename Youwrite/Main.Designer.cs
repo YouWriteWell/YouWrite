@@ -226,7 +226,7 @@
             this.radioButton1.Location = new System.Drawing.Point(541, 6);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(65, 17);
+            this.radioButton1.Size = new System.Drawing.Size(64, 17);
             this.radioButton1.TabIndex = 26;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Attached";
@@ -237,7 +237,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton2.Location = new System.Drawing.Point(612, 6);
+            this.radioButton2.Location = new System.Drawing.Point(611, 6);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(91, 17);
@@ -302,9 +302,9 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(1005, 3);
+            this.button3.Location = new System.Drawing.Point(1004, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 25);
+            this.button3.Size = new System.Drawing.Size(121, 25);
             this.button3.TabIndex = 36;
             this.button3.Text = "Search";
             this.button3.UseVisualStyleBackColor = true;
@@ -313,7 +313,7 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(973, 6);
+            this.textBox2.Location = new System.Drawing.Point(972, 6);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(26, 20);
@@ -324,7 +324,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkBox1.Location = new System.Drawing.Point(709, 10);
+            this.checkBox1.Location = new System.Drawing.Point(708, 10);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 17);
@@ -837,7 +837,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel5.Controls.Add(this.radioButton1, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox2, 6, 0);
             this.tableLayoutPanel5.Controls.Add(this.radioButton2, 2, 0);

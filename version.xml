@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
-    <version>1.0.0.0</version>
+    <version>1.0.0.1</version>
     <url>https://github.com/nhaouari/YouWrite/raw/master/dist/YouWrite.exe</url>
     <changelog>https://github.com/nhaouari/youwrite/releases</changelog>
     <mandatory>true</mandatory>
