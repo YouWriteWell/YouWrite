@@ -96,17 +96,6 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createNewCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chooseCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.backupDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pdfFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.textFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Toolbox_Main = new System.Windows.Forms.ToolStrip();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
@@ -353,7 +342,7 @@
             charStyle1.Strikeout = false;
             charStyle1.Underline = false;
             this.TextEditor.SelectionCharStyle = charStyle1;
-            this.TextEditor.SelectionFont2 = new System.Drawing.Font("Times New Roman", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
+            this.TextEditor.SelectionFont2 = new System.Drawing.Font("Times New Roman", 2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
             paraLineSpacing1.ExactSpacing = 0;
             paraLineSpacing1.SpacingStyle = ExtendedRichTextBox.ParaLineSpacing.LineSpacingStyle.Unknown;
             this.TextEditor.SelectionLineSpacing = paraLineSpacing1;
@@ -410,9 +399,7 @@
             this.mnuView,
             this.mnuInsert,
             this.mnuFormat,
-            this.mnuHelp,
-            this.databaseToolStripMenuItem,
-            this.statisticsToolStripMenuItem});
+            this.mnuHelp});
             this.TextEditorMenu.Location = new System.Drawing.Point(0, 0);
             this.TextEditorMenu.Name = "TextEditorMenu";
             this.TextEditorMenu.Size = new System.Drawing.Size(687, 23);
@@ -757,89 +744,9 @@
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(107, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(152, 22);
             this.mnuAbout.Text = "About";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
-            // 
-            // databaseToolStripMenuItem
-            // 
-            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createNewCategoryToolStripMenuItem,
-            this.chooseCategoryToolStripMenuItem,
-            this.deleteCategoryToolStripMenuItem,
-            this.backupDatabaseToolStripMenuItem,
-            this.importDatabaseToolStripMenuItem,
-            this.preferencesToolStripMenuItem});
-            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(67, 19);
-            this.databaseToolStripMenuItem.Text = "Database";
-            // 
-            // createNewCategoryToolStripMenuItem
-            // 
-            this.createNewCategoryToolStripMenuItem.Name = "createNewCategoryToolStripMenuItem";
-            this.createNewCategoryToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.createNewCategoryToolStripMenuItem.Text = "Create new category";
-            // 
-            // chooseCategoryToolStripMenuItem
-            // 
-            this.chooseCategoryToolStripMenuItem.Name = "chooseCategoryToolStripMenuItem";
-            this.chooseCategoryToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.chooseCategoryToolStripMenuItem.Text = "Choose category";
-            // 
-            // deleteCategoryToolStripMenuItem
-            // 
-            this.deleteCategoryToolStripMenuItem.Name = "deleteCategoryToolStripMenuItem";
-            this.deleteCategoryToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.deleteCategoryToolStripMenuItem.Text = "Delete category";
-            // 
-            // backupDatabaseToolStripMenuItem
-            // 
-            this.backupDatabaseToolStripMenuItem.Name = "backupDatabaseToolStripMenuItem";
-            this.backupDatabaseToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.backupDatabaseToolStripMenuItem.Text = "Backup a database";
-            this.backupDatabaseToolStripMenuItem.Click += new System.EventHandler(this.backupDatabaseToolStripMenuItem_Click);
-            // 
-            // importDatabaseToolStripMenuItem
-            // 
-            this.importDatabaseToolStripMenuItem.Name = "importDatabaseToolStripMenuItem";
-            this.importDatabaseToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.importDatabaseToolStripMenuItem.Text = "Import a database";
-            // 
-            // preferencesToolStripMenuItem
-            // 
-            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.preferencesToolStripMenuItem.Text = "Preferences";
-            // 
-            // statisticsToolStripMenuItem
-            // 
-            this.statisticsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pdfFilesToolStripMenuItem,
-            this.textFilesToolStripMenuItem,
-            this.sRTToolStripMenuItem});
-            this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
-            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(55, 19);
-            this.statisticsToolStripMenuItem.Text = "Import";
-            // 
-            // pdfFilesToolStripMenuItem
-            // 
-            this.pdfFilesToolStripMenuItem.Name = "pdfFilesToolStripMenuItem";
-            this.pdfFilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pdfFilesToolStripMenuItem.Text = "Pdf files";
-            this.pdfFilesToolStripMenuItem.Click += new System.EventHandler(this.pdfFilesToolStripMenuItem_Click);
-            // 
-            // textFilesToolStripMenuItem
-            // 
-            this.textFilesToolStripMenuItem.Name = "textFilesToolStripMenuItem";
-            this.textFilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.textFilesToolStripMenuItem.Text = "Text files";
-            this.textFilesToolStripMenuItem.Click += new System.EventHandler(this.textFilesToolStripMenuItem_Click);
-            // 
-            // sRTToolStripMenuItem
-            // 
-            this.sRTToolStripMenuItem.Name = "sRTToolStripMenuItem";
-            this.sRTToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sRTToolStripMenuItem.Text = "SRT";
             // 
             // Toolbox_Main
             // 
@@ -1122,18 +1029,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuULineDashDotDot;
         private System.Windows.Forms.ToolStripMenuItem mnuULWave;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createNewCategoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem chooseCategoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteCategoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem backupDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importDatabaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         public AutocompleteMenuNS.AutocompleteMenu autocompleteMenu1;
         private TextRulerControl.TextRuler Ruler;
-        private System.Windows.Forms.ToolStripMenuItem statisticsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pdfFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem textFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sRTToolStripMenuItem;
     }
 }

@@ -141,7 +141,7 @@ Environment.SpecialFolder.ApplicationData), "YouWrite", id.ToString() + ".db");
             source = new SQLiteConnection
    ("Data Source=" + dbName + ";Version=3;New=False;Compress=True;");
 
-            mModelPath = dir + @"\Models\";
+            mModelPath = dir + @"\";
             cat = category;
             this.Text ="Import documents ("+cat+")";
             
@@ -207,7 +207,7 @@ Environment.SpecialFolder.ApplicationData), "YouWrite", id.ToString() + ".db");
 
                 CloseConnection();
                 SetConnection();
-                MessageBox.Show("Opearation completed : Errors : "+nberr.ToString()+ " / "+(nberr+nbcorr).ToString()+" number of refereced papers = "+nbref.ToString());
+                MessageBox.Show("Opearation completed !");
                 
             }
 

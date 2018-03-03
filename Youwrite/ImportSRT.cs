@@ -209,7 +209,7 @@ Environment.SpecialFolder.ApplicationData), "YouWrite", id.ToString() + ".db");
 
                 CloseConnection();
                 SetConnection();
-                MessageBox.Show("Opearation completed : Errors : "+nberr.ToString()+ " / "+(nberr+nbcorr).ToString()+" number of refereced papers = "+nbref.ToString());
+                MessageBox.Show("Opearation completed !");
                 
             }
 

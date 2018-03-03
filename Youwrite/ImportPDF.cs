@@ -144,7 +144,7 @@ namespace YouWrite
 
 
 
-            mModelPath = dir + @"\";
+            mModelPath = @"\";
             cat = category;
             this.Text ="Import documents ("+cat+")";
             
@@ -210,7 +210,7 @@ namespace YouWrite
 
                 CloseConnection();
                 SetConnection();
-                MessageBox.Show("Opearation completed : Errors : "+nberr.ToString()+ " / "+(nberr+nbcorr).ToString()+" number of refereced papers = "+nbref.ToString());
+                MessageBox.Show("Opearation completed !");
                 
             }
 

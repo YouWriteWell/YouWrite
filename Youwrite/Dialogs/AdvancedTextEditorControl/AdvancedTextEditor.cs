@@ -872,7 +872,7 @@ namespace YouWrite.AdvancedTextEditorControl
 
         private void mnuAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This software is developped by Haouari Noureddine, USTHB, Algeria");
+            MessageBox.Show("YouWrite is developped by Noureddine Haouari");
         }
 
         private void prtDoc_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
