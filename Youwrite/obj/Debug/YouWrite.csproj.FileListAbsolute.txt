@@ -157,7 +157,6 @@ C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Dia
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Form2.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Form3.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Form4.resources
-C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.search.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.TextRulerControl.TextRuler.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.phrases.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.UserControl2.resources
@@ -167,3 +166,4 @@ C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.csp
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.TrustInfo.xml
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.exe.manifest
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.application
+C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.SearchUC.resources

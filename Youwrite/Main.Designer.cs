@@ -141,7 +141,7 @@
             this.label6.Cursor = System.Windows.Forms.Cursors.Cross;
             this.label6.Dock = System.Windows.Forms.DockStyle.Right;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(396, 3);
+            this.label6.Location = new System.Drawing.Point(395, 3);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(139, 32);
@@ -223,7 +223,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton1.Location = new System.Drawing.Point(541, 6);
+            this.radioButton1.Location = new System.Drawing.Point(540, 6);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(64, 17);
@@ -237,7 +237,7 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton2.Location = new System.Drawing.Point(611, 6);
+            this.radioButton2.Location = new System.Drawing.Point(610, 6);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(91, 17);
@@ -302,9 +302,9 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(1004, 3);
+            this.button3.Location = new System.Drawing.Point(1003, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(121, 25);
+            this.button3.Size = new System.Drawing.Size(122, 25);
             this.button3.TabIndex = 36;
             this.button3.Text = "Search";
             this.button3.UseVisualStyleBackColor = true;
@@ -313,7 +313,7 @@
             // textBox2
             // 
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(972, 6);
+            this.textBox2.Location = new System.Drawing.Point(971, 6);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(26, 20);
@@ -324,14 +324,13 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.checkBox1.Location = new System.Drawing.Point(708, 10);
+            this.checkBox1.Location = new System.Drawing.Point(707, 10);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 17);
             this.checkBox1.TabIndex = 39;
             this.checkBox1.Text = "Case sensitive";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // radioButton3
             // 
@@ -810,7 +809,6 @@
             this.advancedTextEditor1.Name = "advancedTextEditor1";
             this.advancedTextEditor1.Size = new System.Drawing.Size(901, 357);
             this.advancedTextEditor1.TabIndex = 16;
-            this.advancedTextEditor1.Load += new System.EventHandler(this.advancedTextEditor1_Load_1);
             // 
             // tableLayoutPanel4
             // 
@@ -837,7 +835,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
             this.tableLayoutPanel5.Controls.Add(this.radioButton1, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.textBox2, 6, 0);
             this.tableLayoutPanel5.Controls.Add(this.radioButton2, 2, 0);

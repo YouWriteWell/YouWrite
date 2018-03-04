@@ -172,6 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Databases.cs" />
     <Compile Include="Dialogs\AdvancedTextEditorControl\AdvancedTextEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -257,11 +258,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="search.cs">
+    <Compile Include="SearchUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="search.Designer.cs">
-      <DependentUpon>search.cs</DependentUpon>
+    <Compile Include="SearchUC.Designer.cs">
+      <DependentUpon>SearchUC.cs</DependentUpon>
     </Compile>
     <Compile Include="TextRulerControl\TextRuler.cs">
       <SubType>UserControl</SubType>
@@ -317,8 +318,8 @@
       <DependentUpon>ImportPDF.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="search.resx">
-      <DependentUpon>search.cs</DependentUpon>
+    <EmbeddedResource Include="SearchUC.resx">
+      <DependentUpon>SearchUC.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TextRulerControl\TextRuler.resx">
