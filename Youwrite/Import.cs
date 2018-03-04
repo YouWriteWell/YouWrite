@@ -60,7 +60,28 @@ namespace YouWrite
             mModelPath = _appDir + @"\";
         }
 
-     
+
+        public DataTable listfiles(string foldername,string extension)
+        {
+            var DT2 = new DataTable();
+            DT2.Columns.Add("Number", typeof(int));
+            DT2.Columns.Add("Paper", typeof(string));
+            DT2.Columns.Add("State", typeof(string));
+
+
+            var i = 1;
+            foreach (var f in Directory.GetFiles(foldername))
+                if (f.Split('.').Count() >= 2 && f.Split('.')[f.Split('.').Count() - 1] == extension)
+                {
+                    DT2.Rows.Add(i, f, " ");
+                    i++;
+
+                }
+
+            return DT2;
+        }
+
+
 
         // To chuck if this b-gram existes 
         private int seqexist2gram(string word1, string word2)
