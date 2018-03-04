@@ -6,13 +6,9 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using AutocompleteMenuNS;
 using AutoUpdaterDotNET;
-using org.apache.pdfbox.pdmodel;
-using org.apache.pdfbox.util;
 using OpenNLP.Tools.SentenceDetect;
 using OpenNLP.Tools.Tokenize;
 
@@ -22,20 +18,22 @@ namespace YouWrite
     {
         private readonly string appDir; // data directory 
         private readonly AutocompleteMenu autocompleteMenu1 = new AutocompleteMenu();
+
+        private readonly string dir;
+
+        private readonly string mModelPath;
+
+        private readonly TableLayoutPanel panel;
+
+
+        private readonly Databases _database;
         private int chag;
         private SQLiteDataAdapter DB;
 
-        private readonly string dir;
-        private DataSet DS = new DataSet();
-        private DataTable DT = new DataTable();
-        private DataTable DT2 = new DataTable();
-        private DataTable DT3;
         private int hightc3;
         private int idf; // the id of the first element in the list (used to get phrases)
         private int idpg;
         private int indexreview;
-
-        private readonly string mModelPath;
 
         private MaximumEntropySentenceDetector mSentenceDetector;
 
@@ -45,8 +43,6 @@ namespace YouWrite
         // text = the searched word 
         // idp = id of the paper
         private int nbp = 5;
-
-        private readonly TableLayoutPanel panel;
         private int phraseidg;
         private string[] reviewingsentences;
         private SQLiteConnection source, source2;
@@ -69,13 +65,7 @@ namespace YouWrite
             appDir = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData), "YouWrite");
 
-            if (!Directory.Exists(appDir)) Directory.CreateDirectory(appDir);
-
-            if (!File.Exists(Path.Combine(appDir, "categories.db")))
-                File.Copy(Path.Combine(dir, "categories.db"), Path.Combine(appDir, "categories.db"), true);
-
-            if (!File.Exists(Path.Combine(appDir, "model.db")))
-                File.Copy(Path.Combine(dir, "model.db"), Path.Combine(appDir, "model.db"), true);
+            _database = new Databases(dir, appDir);
 
 
             panel = new TableLayoutPanel();
@@ -84,17 +74,12 @@ namespace YouWrite
 
             panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
 
-
-            source2 = new SQLiteConnection
-                ("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
-
-            source = new SQLiteConnection
-                ("Data Source=" + Path.Combine(appDir, "model.db") + ";Version=3;New=False;Compress=True;");
-
             // MessageBox.Show(dir);
             mModelPath = dir;
-            SetConnection();
-            selectdb();
+
+
+            updateCategories();
+
 
             advancedTextEditor1.textboxchanged += textchanged;
             advancedTextEditor1.textboxclicked += textboxclicked;
@@ -104,21 +89,16 @@ namespace YouWrite
             AutoUpdater.Start("https://raw.githubusercontent.com/nhaouari/YouWrite/master/version.xml");
         }
 
-
-        // Sqllite functions
-        private void SetConnection()
+        private void updateCategories()
         {
-            source.Open();
-            if (sql_con != null) sql_con.Close();
-
-            sql_con = new SQLiteConnection("Data Source=:memory:");
-            sql_con.Open();
-
-            // copy db file to memory
-
-            source.BackupDatabase(sql_con, "main", "main", -1, null, 0);
-
-            source.Close();
+            var DT= _database.getCategories();
+            comboBox2.Items.Clear();
+            if (DT.Rows.Count > 0)
+                for (var i = 0; i < DT.Rows.Count; i++)
+                {
+                    var dr = DT.Rows[i];
+                    comboBox2.Items.Add(dr[1].ToString());
+                }
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -153,107 +133,6 @@ namespace YouWrite
         }
 
 
-        
-
-        private void CloseConnection()
-        {
-            source.Open();
-
-            // save memory db to file
-            sql_con.BackupDatabase(source, "main", "main", -1, null, 0);
-            source.Close();
-        }
-
-        private void ExecuteQuery(string txtQuery)
-        {
-            //SetConnection();
-            //sql_con.Open();
-            sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = txtQuery;
-            sql_cmd.ExecuteNonQuery();
-            //sql_con.Close();
-        }
-
-
-        private void createdb(string name, string description)
-        {
-            var CommandText =
-                new SQLiteCommand(
-                    "insert into  category (name,description) values ('" + name + "','" + description + "')", sql_con);
-            CommandText.ExecuteNonQuery();
-            sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-
-            if (DT.Rows.Count > 0)
-            {
-                var dr = DT.Rows[0];
-                var id = Convert.ToInt32(dr[0].ToString());
-                // sql_con.Close();
-                var dbName = Path.Combine(Environment.GetFolderPath(
-                        Environment.SpecialFolder.ApplicationData), "YouWrite", id + ".db");
-
-                File.Copy(appDir + @"\model.db", dbName, true);
-            }
-
-            //  sql_con.Close();
-        }
-
-        // To check if this b-gram existes 
-        private int seqexist2gram(string word1, string word2)
-        {
-            //SetConnection();
-            // sql_con.Open();
-            sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = "select id from bgram where word1 like '" + word1 + "' and word2 like'" + word2 + "'";
-
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-
-            if (DT.Rows.Count > 0)
-            {
-                var dr = DT.Rows[0];
-                var id = Convert.ToInt32(dr[0].ToString());
-                // sql_con.Close();
-                return id;
-            }
-
-            // sql_con.Close();
-            return -1;
-        }
-
-        // To check if this 3-gram existes 
-        private int seqexist3gram(string word1, string word2, string word3)
-        {
-            // SetConnection();
-            // sql_con.Open();
-
-            sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = "select id from tgram where word1='" + word1 + "' and word2='" + word2 +
-                                  "'and word3='" + word3 + "'";
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-
-            if (DT.Rows.Count > 0)
-            {
-                var dr = DT.Rows[0];
-                var id = Convert.ToInt32(dr[0].ToString());
-                // sql_con.Close();
-                return id;
-            }
-
-            //    sql_con.Close();
-            return -1;
-        }
-
-
 // Remove special caracters 
         public static string removes(string s)
         {
@@ -269,7 +148,6 @@ namespace YouWrite
         //ignore this caracters 
         private bool ignore(string s)
         {
-           
             string[] chars =
             {
                 "/", "!", "@", "#", "$", "%", "^", "&", "*", "%", "'", "\"", "|", "{", "}", "[", "]", ",", ".", "=",
@@ -279,152 +157,6 @@ namespace YouWrite
                 if (s.Contains(chars[i]))
                     return true;
             return false;
-        }
-
-        private int Add(string word1, string word2)
-        {
-            //SetConnection();
-            // sql_con.Open();
-            var CommandText =
-                new SQLiteCommand("insert into  bgram (word1,word2,freq) values ('" + word1 + "','" + word2 + "',0)",
-                    sql_con);
-            CommandText.ExecuteNonQuery();
-            sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-
-            if (DT.Rows.Count > 0)
-            {
-                var dr = DT.Rows[0];
-                var id = Convert.ToInt32(dr[0].ToString());
-                // sql_con.Close();
-                return id;
-            }
-
-            //  sql_con.Close();
-            return -1;
-        }
-
-        //add 3-gram
-        private int Add(string word1, string word2, string word3)
-        {
-            // SetConnection();
-            // sql_con.Open();
-
-            var CommandText =
-                new SQLiteCommand(
-                    "insert into  tgram (word1,word2,word3,freq) values ('" + word1 + "','" + word2 + "','" + word3 +
-                    "',0)", sql_con);
-            CommandText.ExecuteNonQuery();
-            sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-
-
-            var dr = DT.Rows[0];
-            var id = Convert.ToInt32(dr[0].ToString());
-            // sql_con.Close();
-            return id;
-        }
-
-        private void Update2gram(int id)
-        {
-            var txtSQLQuery = "update bgram set freq =(freq+1) where id = " + id;
-            ExecuteQuery(txtSQLQuery);
-        }
-
-        private void Update3gram(int id)
-        {
-            var txtSQLQuery = "update tgram set freq =(freq+1) where id = " + id;
-            ExecuteQuery(txtSQLQuery);
-        }
-
-        //add phrase
-        private int AddPhrase(string phrase)
-        {
-            // SetConnection();
-            // sql_con.Open();
-
-            var encod = Encoding.Default.GetBytes(phrase);
-            var phrase1 = Encoding.UTF8.GetString(encod);
-            var CommandText = new SQLiteCommand("insert into  phrase (phrase) values ('@phrase')", sql_con);
-
-            CommandText.Parameters.AddWithValue("@phrase", phrase1);
-
-            try
-            {
-                CommandText.ExecuteNonQuery();
-                sql_cmd = sql_con.CreateCommand();
-                sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
-                DB = new SQLiteDataAdapter(sql_cmd);
-                DS.Reset();
-                DB.Fill(DS);
-                DT = DS.Tables[0];
-
-                if (DT.Rows.Count > 0)
-                {
-                    var dr = DT.Rows[0];
-                    var id = Convert.ToInt32(dr[0].ToString());
-                    // sql_con.Close();
-                    return id;
-                }
-            }
-            catch
-            {
-            }
-
-            // sql_con.Close();
-            return -1;
-        }
-
-        //add phrasegramrelation
-        private void AddPhraseGram(int idp, int idg, int type)
-        {
-            // SetConnection();
-            // sql_con.Open();
-            var CommandText =
-                new SQLiteCommand("insert into  grampaper (idp,idg,type) values (" + idp + "," + idg + "," + type + ")",
-                    sql_con);
-            CommandText.ExecuteNonQuery();
-            // sql_con.Close();
-        }
-
-      
-
-        private void selectdb()
-        {
-            source2 = new SQLiteConnection
-                ("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
-
-
-            source2.Open();
-
-            sql_cmd = source2.CreateCommand();
-            sql_cmd.CommandText = @"select id,name from category";
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT3 = new DataTable();
-            DT2 = DS.Tables[0];
-            DT3 = DS.Tables[0];
-            comboBox2.Items.Clear();
-
-            if (DT2.Rows.Count > 0)
-                for (var i = 0; i < DT2.Rows.Count; i++)
-                {
-                    var dr = DT2.Rows[i];
-                    comboBox2.Items.Add(dr[1].ToString());
-                }
-            //DT3 = DT2.Clone();
-            //  sql_con.Close();
-
-            source2.Close();
         }
 
         public string[] SplitSentences(string paragraph)
@@ -442,51 +174,37 @@ namespace YouWrite
             return mTokenizer.Tokenize(sentence);
         }
 
-        public DataTable ExecuteSelect(SQLiteCommand cmd)
-        {
-            var DB = new SQLiteDataAdapter(cmd);
-            var DS = new DataSet();
-            var DT = new DataTable();
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
-
-            return DT;
-        }
 
         private void getusing(string word1, string word2)
         {
             // count order word1 --> word2
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
             sql_cmd.CommandText = "select freq from bgram where word1 = @word1 and word2 = @word2";
-
             sql_cmd.Parameters.AddRange(new[]
             {
                 new SQLiteParameter("@word1", word1),
                 new SQLiteParameter("@word2", word2)
             });
 
-            DT = ExecuteSelect(sql_cmd);
+            var DT= _database.ExecuteSelect(sql_cmd);
             var count1 = DT.Rows.Count;
 
 
             // count order word2 --> word1
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
             sql_cmd.CommandText = "select freq from bgram where word1 = @word2 and word2 = @word1";
 
-            //sql_cmd.Parameters.Add(word11);
-            //sql_cmd.Parameters.Add(word22);
             sql_cmd.Parameters.AddRange(new[]
             {
                 new SQLiteParameter("@word1", word1),
                 new SQLiteParameter("@word2", word2)
             });
-            DT = ExecuteSelect(sql_cmd);
+            DT= _database.ExecuteSelect(sql_cmd);
             var count2 = DT.Rows.Count;
 
 
             // search for the words in the center
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
             var ite1 = "";
             if (count1 > 0)
             {
@@ -497,7 +215,8 @@ namespace YouWrite
                     new SQLiteParameter("@word1", word1),
                     new SQLiteParameter("@word2", word2)
                 });
-                DT = ExecuteSelect(sql_cmd);
+
+                DT = _database.ExecuteSelect(sql_cmd);
                 if (DT.Rows.Count > 0)
                 {
                     DataRow dr;
@@ -505,7 +224,6 @@ namespace YouWrite
                     {
                         dr = DT.Rows[0];
                         idf = Convert.ToInt32(dr[1].ToString());
-                        //getphrases(idf, 2, word2);
                     }
 
                     for (var i = 0; i < DT.Rows.Count; i++)
@@ -526,7 +244,7 @@ namespace YouWrite
                     new SQLiteParameter("@word1", word1),
                     new SQLiteParameter("@word2", word2)
                 });
-                DT = ExecuteSelect(sql_cmd);
+                DT= _database.ExecuteSelect(sql_cmd);
                 if (DT.Rows.Count > 0)
                 {
                     DataRow dr;
@@ -534,7 +252,6 @@ namespace YouWrite
                     {
                         dr = DT.Rows[0];
                         idf = Convert.ToInt32(dr[1].ToString());
-                        //getphrases(idf, 2, word2);
                     }
 
                     for (var i = 0; i < DT.Rows.Count; i++)
@@ -549,15 +266,13 @@ namespace YouWrite
             if (count1 == 0 && count2 == 0)
             {
                 sql_cmd.CommandText = "select word2,id from bgram where word1 = @word1 order by freq desc LIMIT 0, 100";
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
                 sql_cmd.Parameters.AddRange(new[]
                 {
                     new SQLiteParameter("@word1", word1),
                     new SQLiteParameter("@word2", word2)
                 });
 
-                DT = ExecuteSelect(sql_cmd);
+                DT= _database.ExecuteSelect(sql_cmd);
 
 
                 if (DT.Rows.Count > 0)
@@ -567,7 +282,6 @@ namespace YouWrite
                     {
                         dr = DT.Rows[0];
                         idf = Convert.ToInt32(dr[1].ToString());
-                        //getphrases(idf, 2, word2);
                     }
 
                     for (var i = 0; i < DT.Rows.Count; i++)
@@ -578,15 +292,13 @@ namespace YouWrite
                 }
 
                 sql_cmd.CommandText = "select word2,id from bgram where word1 = @word2 order by freq desc LIMIT 0, 100";
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
                 sql_cmd.Parameters.AddRange(new[]
                 {
                     new SQLiteParameter("@word1", word1),
                     new SQLiteParameter("@word2", word2)
                 });
 
-                DT = ExecuteSelect(sql_cmd);
+                DT= _database.ExecuteSelect(sql_cmd);
 
 
                 if (DT.Rows.Count > 0)
@@ -596,7 +308,6 @@ namespace YouWrite
                     {
                         dr = DT.Rows[0];
                         idf = Convert.ToInt32(dr[1].ToString());
-                        //getphrases(idf, 2, word2);
                     }
 
                     for (var i = 0; i < DT.Rows.Count; i++)
@@ -625,13 +336,11 @@ namespace YouWrite
 
         private void getnextword(string word1, string word2, string word3, string lastletter)
         {
-            //MessageBox.Show("|" + word1 + "|" + word2+"|"+lastletter+"|");
             label10.Text = word1;
             label11.Text = word2;
             label12.Text = lastletter;
-            //word1 = removes(word1);
-            //word2 = removes(word2);
-            //word3 = removes(word3);
+
+            var sql_cmd = new SQLiteCommand();
 
             if (checkBox2.Checked) MessageBox.Show("word1 = " + word1 + " word2 = " + word2 + " word3 = " + word3);
 
@@ -639,10 +348,8 @@ namespace YouWrite
             if (lastletter.Equals(" "))
             {
                 listBox1.Items.Clear();
-                sql_cmd = sql_con.CreateCommand();
-                //SetConnection();
-                //SQLiteParameter word11 = new SQLiteParameter("@word11", SqlDbType.Text) { Value = word1 };
-                //SQLiteParameter word22 = new SQLiteParameter("@word22", SqlDbType.Text) { Value = word2 };
+                sql_cmd = new SQLiteCommand();
+
 
                 if (radioButton4.Checked)
                     sql_cmd.CommandText =
@@ -658,13 +365,7 @@ namespace YouWrite
                     new SQLiteParameter("@word3", word3)
                 });
 
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
-
-                DB = new SQLiteDataAdapter(sql_cmd);
-                DS.Reset();
-                DB.Fill(DS);
-                DT = DS.Tables[0];
+                var DT= _database.ExecuteSelect(sql_cmd);
 
                 idf = -1;
 
@@ -672,8 +373,6 @@ namespace YouWrite
                 {
                     var dr = DT.Rows[0];
                     idf = Convert.ToInt32(dr[1].ToString());
-                    //getphrases(idf, 3, word2);
-
                     for (var i = 0; i < DT.Rows.Count; i++)
                     {
                         dr = DT.Rows[i];
@@ -682,10 +381,8 @@ namespace YouWrite
                 }
 
                 listBox1.Items.Add("------------------");
-                sql_cmd = sql_con.CreateCommand();
+                sql_cmd = new SQLiteCommand();
 
-                //SQLiteParameter word11 = new SQLiteParameter("@word11", SqlDbType.Text) { Value = word1 };
-                //SQLiteParameter word22 = new SQLiteParameter("@word22", SqlDbType.Text) { Value = word2 };
 
                 if (radioButton4.Checked)
                     sql_cmd.CommandText =
@@ -693,18 +390,15 @@ namespace YouWrite
                 else
                     sql_cmd.CommandText =
                         "select word1,id from bgram where word2=@word3 order by freq desc LIMIT 0, 100";
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
+
                 sql_cmd.Parameters.AddRange(new[]
                 {
                     new SQLiteParameter("@word1", word1),
                     new SQLiteParameter("@word2", word2),
                     new SQLiteParameter("@word3", word3)
                 });
-                DB = new SQLiteDataAdapter(sql_cmd);
-                DS.Reset();
-                DB.Fill(DS);
-                DT = DS.Tables[0];
+
+                DT= _database.ExecuteSelect(sql_cmd);
 
                 if (DT.Rows.Count > 0)
                 {
@@ -725,23 +419,18 @@ namespace YouWrite
             }
             else
             {
-                sql_cmd = sql_con.CreateCommand();
+                sql_cmd = new SQLiteCommand();
 
                 sql_cmd.CommandText =
                     "select word1,id from bgram where word1 like @word2 order by freq desc LIMIT 0, 100";
-                //richTextBox1.Text = sql_cmd.CommandText;
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
                 sql_cmd.Parameters.AddRange(new[]
                 {
                     new SQLiteParameter("@word1", word1),
                     new SQLiteParameter("@word2", word2 + "%"),
                     new SQLiteParameter("@word3", word3)
                 });
-                DB = new SQLiteDataAdapter(sql_cmd);
-                DS.Reset();
-                DB.Fill(DS);
-                DT = DS.Tables[0];
+
+                var DT= _database.ExecuteSelect(sql_cmd);
 
 
                 var list = new List<string>();
@@ -766,7 +455,6 @@ namespace YouWrite
                     var dr = DT.Rows[i];
 
                     var n = listBox1.FindString(dr[0].ToString());
-                    // MessageBox.Show(n.ToString() + " " + dr[0].ToString());
 
                     if (n < 0)
                         if (!ignore(dr[0].ToString()))
@@ -783,25 +471,16 @@ namespace YouWrite
                     autocompleteMenu1.Show(textBox5, false);
                 }
             }
-
-            // sql_con.Close();
         }
 
-      
 
         // get the title of specific paper 
         public string gettitle(int idp)
         {
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
             sql_cmd.CommandText = "select title from paper where id=" + idp;
 
-            //sql_cmd.Parameters.Add(word11);
-            //sql_cmd.Parameters.Add(word22);
-
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
+            var DT= _database.ExecuteSelect(sql_cmd);
 
             idf = -1;
 
@@ -822,43 +501,47 @@ namespace YouWrite
         private void textchanged(object sender, EventArgs e)
         {
             // Do some work
-            var timeDiff = DateTime.Now - starttime;
-            starttime = DateTime.Now;
+            if (_database.connectionEstablished)
+            {
+                var timeDiff = DateTime.Now - starttime;
+                starttime = DateTime.Now;
 
 
-            // MessageBox.Show(advancedTextEditor1.TextEditor.SelectionStart.ToString());
-            var s = advancedTextEditor1.TextEditor.Text.Substring(0, advancedTextEditor1.TextEditor.SelectionStart);
+                // MessageBox.Show(advancedTextEditor1.TextEditor.SelectionStart.ToString());
+                var s = advancedTextEditor1.TextEditor.Text.Substring(0, advancedTextEditor1.TextEditor.SelectionStart);
 
-            var lastletter = "";
-            var s1 = TokenizeSentence(s);
-            var sss = TokenizeSentence(advancedTextEditor1.TextEditor.Text);
-            updatecombo(s1.Count());
-            var s33 = ""; // word 3
-            if (s1.Count() > 0) lastletter = s.Substring(s.Length - 1, 1); // use it later to know complete or predect
-            if (timeDiff.Milliseconds >= 500 || lastletter.Equals(" "))
+                var lastletter = "";
+                var s1 = TokenizeSentence(s);
+                var sss = TokenizeSentence(advancedTextEditor1.TextEditor.Text);
+                updatecombo(s1.Count());
+                var s33 = ""; // word 3
                 if (s1.Count() > 0)
-                {
-                    getphrases(); //show phrases
-                    var s22 = s1[s1.Count() - 1]; //take the last word n
-                    string s11;
-
-                    if (s1.Count() >= 2) // if they there more then two the take n-1 word
-                        s11 = s1[s1.Count() - 2];
-                    else // one word
-                        s11 = "";
-                    if (!s22.Equals(""))
+                    lastletter = s.Substring(s.Length - 1, 1); // use it later to know complete or predect
+                if (timeDiff.Milliseconds >= 500 || lastletter.Equals(" "))
+                    if (s1.Count() > 0)
                     {
-                        if (sss.Count() > s1.Count()) s33 = sss[s1.Count()];
-                        //MessageBox.Show("S11=" + s11 + "S22" + s22 + "S33" + s33);
-                        getnextword(s11, s22, s33, lastletter);
-                    }
+                        getphrases(); //show phrases
+                        var s22 = s1[s1.Count() - 1]; //take the last word n
+                        string s11;
 
-                    ;
-                }
-                else if (s.Length == 0)
-                {
-                    listBox1.Items.Clear();
-                }
+                        if (s1.Count() >= 2) // if they there more then two the take n-1 word
+                            s11 = s1[s1.Count() - 2];
+                        else // one word
+                            s11 = "";
+                        if (!s22.Equals(""))
+                        {
+                            if (sss.Count() > s1.Count()) s33 = sss[s1.Count()];
+                            //MessageBox.Show("S11=" + s11 + "S22" + s22 + "S33" + s33);
+                            getnextword(s11, s22, s33, lastletter);
+                        }
+
+                        ;
+                    }
+                    else if (s.Length == 0)
+                    {
+                        listBox1.Items.Clear();
+                    }
+            }
         }
 
         private void textboxclicked(object sender, EventArgs e)
@@ -884,60 +567,39 @@ namespace YouWrite
             if (s.Split(' ').Count() > 3)
             {
                 label17.Text = s.Split(' ')[1] + "..." + s.Split(' ')[3];
-                //MessageBox.Show(s.Split(' ')[1]);
-                //MessageBox.Show(s.Split(' ')[2]);
-                //MessageBox.Show(s.Split(' ')[3]);
-                var sql_cmd2 = sql_con.CreateCommand();
-                //SetConnection();
-                //SQLiteParameter word11 = new SQLiteParameter("@word11", SqlDbType.Text) { Value = word1 };
-                //SQLiteParameter word22 = new SQLiteParameter("@word22", SqlDbType.Text) { Value = word2 };
+
+                var sql_cmd2 = new SQLiteCommand();
+
 
                 sql_cmd2.CommandText = "select word2 from tgram where word1 like '" + s.Split(' ')[1] +
                                        "' and word3 like '" + s.Split(' ')[3] + "' order by freq desc LIMIT 0, 100";
 
-                // MessageBox.Show(sql_cmd2.CommandText);
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
 
-                var DB4 = new SQLiteDataAdapter(sql_cmd2);
-                var DS4 = new DataSet();
-                DS4.Reset();
-                DB4.Fill(DS4);
-                var DT4 = new DataTable();
-                DT4 = DS4.Tables[0];
+                var DT4 = _database.ExecuteSelect(sql_cmd2);
 
 
                 if (DT4.Rows.Count > 0)
                 {
-                    //    MessageBox.Show("Clicked");
                     DataRow dr;
-
-                    //  var items = new List<AutocompleteItem>();
 
                     for (var i = 0; i < DT4.Rows.Count; i++)
                     {
-                        //MessageBox.Show("Clicked2");
                         dr = DT4.Rows[i];
                         var n = listBox2.FindString(dr[0].ToString());
                         if (!ignore(dr[0].ToString()) && n < 0) listBox2.Items.Add(dr[0].ToString());
                     }
-
-                    //advancedTextEditor1.autocompleteMenu2.SetAutocompleteItems(items);
-                    // advancedTextEditor1.autocompleteMenu2.Show(advancedTextEditor1.TextEditor, true);
                 }
             }
         }
 
 
-
         private void getphrases()
         {
             var hightc = 0;
-            //panel1.Controls.Clear();
 
             var words = TokenizeSentence(removes(advancedTextEditor1.TextEditor.Text));
             var numberofwords = 0;
-            //MessageBox.Show(numberofwords.ToString());
+
             var txt = "";
             var start = 0;
 
@@ -955,21 +617,10 @@ namespace YouWrite
 
             if (!txt.Equals(""))
             {
-                sql_cmd = sql_con.CreateCommand();
-                //MessageBox.Show(txt);
-
-
-                // sql_cmd.CommandText = "select phrase from phrase,grampaper where phrase.id=grampaper.idp and grampaper.idg =" + idg.ToString() + "and grampaper.type =" + type.ToString();
+                sql_cmd = new SQLiteCommand();
                 sql_cmd.CommandText = "select phrase,idp,id from phrase where phrase like '%" + txt + "%' LIMIT 0, 20";
+                var DT= _database.ExecuteSelect(sql_cmd);
 
-
-                var DB = new SQLiteDataAdapter(sql_cmd);
-                var DS = new DataSet();
-                DS.Reset();
-                DB.Fill(DS);
-                var DT = DS.Tables[0];
-
-                int my1stPosition;
                 if (DT.Rows.Count > 0)
                 {
                     panel1.Controls.Clear();
@@ -1001,8 +652,6 @@ namespace YouWrite
                         for (var i = start; i < start + numberofwords; i++)
                             highlight(words[i]);
                 }
-
-                // sql_con.Close();
             }
         }
 
@@ -1019,16 +668,12 @@ namespace YouWrite
             idpg = idp;
             chag = cha;
 
-            sql_cmd = sql_con.CreateCommand();
+            var sql_cmd = new SQLiteCommand();
 
             sql_cmd.CommandText = "select phrase  from phrase  where id >=   " + (phraseid - nbp) + " and id <= " +
                                   (phraseid + nbp) + " and idp=" + idp + " and cha=" + cha;
 
-            var DB = new SQLiteDataAdapter(sql_cmd);
-            var DS = new DataSet();
-            DS.Reset();
-            DB.Fill(DS);
-            var DT = DS.Tables[0];
+            var DT= _database.ExecuteSelect(sql_cmd);
 
             richTextBox2.Text = "";
 
@@ -1048,15 +693,11 @@ namespace YouWrite
                 int my1stPosition;
 
 
-                sql_cmd = sql_con.CreateCommand();
+                sql_cmd = new SQLiteCommand();
 
                 sql_cmd.CommandText = "select refn,reft  from ref  where idp = " + idp + " and cha= " + cha;
 
-                DB = new SQLiteDataAdapter(sql_cmd);
-                DS = new DataSet();
-                DS.Reset();
-                DB.Fill(DS);
-                DT = DS.Tables[0];
+                DT= _database.ExecuteSelect(sql_cmd);
 
                 richTextBox2.Text += Environment.NewLine + "References" + Environment.NewLine;
                 if (DT.Rows.Count > 0)
@@ -1125,15 +766,11 @@ namespace YouWrite
 
         private string getref(int reference, int idp)
         {
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
 
             sql_cmd.CommandText = "select reft  from ref  where idp = " + idp + " and refn= " + reference;
 
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS = new DataSet();
-            DS.Reset();
-            DB.Fill(DS);
-            DT = DS.Tables[0];
+            var DT= _database.ExecuteSelect(sql_cmd);
 
             richTextBox2.Text += Environment.NewLine + "References" + Environment.NewLine;
             if (DT.Rows.Count > 0)
@@ -1145,36 +782,7 @@ namespace YouWrite
             return "[" + reference + "] is not indexed, see the paper";
         }
 
-        private string getpaperinfohtml(string path)
-        {
-            var ss = path.Split('\\');
-            var papername = ss[ss.Count() - 1];
-            ss = papername.Split('-');
-
-            string title = "", year = "", authors = "";
-
-            if (ss.Count() >= 3)
-            {
-                year = ss[0];
-                var mm = 1;
-                while (mm <= ss.Count() - 2)
-                {
-                    title = title + ss[mm];
-                    mm++;
-                }
-
-                authors = ss[ss.Count() - 1].Split('.')[0];
-            }
-            else
-            {
-                return papername;
-            }
-
-            var result = "<p><b>Paper </b></p></br><p><b>Title:</b>" + title + "</p></br><p><b>Authors: </b>" +
-                         authors + "</p></br> <p><b>  Year: </b>" + year + "</p> </br>";
-            return result;
-        }
-
+        
         private void getphrases(string text)
         {
             var hightc = 0;
@@ -1198,33 +806,22 @@ namespace YouWrite
 
             if (!txt.Equals(""))
             {
-                sql_cmd = sql_con.CreateCommand();
-                //MessageBox.Show(txt);
+                sql_cmd = new SQLiteCommand();
 
                 if (checkBox1.Checked)
-                    ExecuteQuery("PRAGMA case_sensitive_like=ON");
+                    _database.ExecuteQuery("PRAGMA case_sensitive_like=ON");
                 else
-                    ExecuteQuery("PRAGMA case_sensitive_like=OFF");
-                // sql_cmd.CommandText = "select phrase from phrase,grampaper where phrase.id=grampaper.idp and grampaper.idg =" + idg.ToString() + "and grampaper.type =" + type.ToString();
+                    _database.ExecuteQuery("PRAGMA case_sensitive_like=OFF");
+
                 sql_cmd.CommandText =
                     "select phrase.phrase,paper.id,phrase.id,cha,title  from paper, phrase  where paper.id=phrase.idp and phrase  like '%" +
                     txt + "%'  order by phrase.idp LIMIT 0," + textBox2.Text;
 
-                var DB = new SQLiteDataAdapter(sql_cmd);
-                var DS = new DataSet();
-                DS.Reset();
-                DB.Fill(DS);
-                var DT = DS.Tables[0];
-                // StreamWriter file2 = new StreamWriter(@"map.mm");
-                // file2.WriteLine("<map version=\"1.0.1\">");
-                // file2.WriteLine("<node TEXT=\""+text+ "\">");
+                var DT= _database.ExecuteSelect(sql_cmd);
 
-
-                int my1stPosition;
                 if (DT.Rows.Count > 0)
                 {
                     panel1.Controls.Clear();
-                    object[] arr;
                     DataRow dr;
 
                     for (var i = 0; i < DT.Rows.Count; i++)
@@ -1245,15 +842,12 @@ namespace YouWrite
                             dr[0].ToString(), this, Convert.ToInt32(dr[3]));
                         // file2.WriteLine("<node LINK=\"" + dr[4] + "\" TEXT=\"" + dr[0].ToString() + "\">");
 
-                        sql_cmd2 = sql_con.CreateCommand();
+                        sql_cmd2 = new SQLiteCommand();
                         sql_cmd2.CommandText = "select phrase,id,idp from phrase  where id >=   " +
                                                (Convert.ToInt32(dr[2]) - 5) + " and id <= " +
                                                (Convert.ToInt32(dr[2]) + 5) + " and idp=" + dr[1];
-                        var DB2 = new SQLiteDataAdapter(sql_cmd2);
-                        var DS2 = new DataSet();
-                        DS2.Reset();
-                        DB2.Fill(DS2);
-                        var DT2 = DS2.Tables[0];
+
+                        var DT2 = _database.ExecuteSelect(sql_cmd2);
                         if (DT2.Rows.Count > 0)
                         {
                             DataRow dr2;
@@ -1308,7 +902,6 @@ namespace YouWrite
         {
         }
 
-       
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1332,7 +925,7 @@ namespace YouWrite
             }
         }
 
-        
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             getphrases();
@@ -1359,35 +952,22 @@ namespace YouWrite
 
         private void comboBox2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            source2 = new SQLiteConnection
-                ("Data Source=" + Path.Combine(appDir, "categories.db") + ";Version=3;New=False;Compress=True;");
-            source2.Open();
-            //SetConnection();
-            sql_cmd = source2.CreateCommand();
-            sql_cmd.CommandText = @"select id,name from category";
-            DB = new SQLiteDataAdapter(sql_cmd);
-            DS.Reset();
-            DB.Fill(DS);
-            DT3 = new DataTable();
-            DT3 = DS.Tables[0];
+            var DT3 = _database.getCategories();
             var dr = DT3.Rows[comboBox2.SelectedIndex];
-
 
             var dbName = Path.Combine(Environment.GetFolderPath(
                     Environment.SpecialFolder.ApplicationData), "YouWrite", dr[0] + ".db");
 
-
             source = new SQLiteConnection
                 ("Data Source=" + dbName + ";Version=3;New=False;Compress=True;");
-            SetConnection();
 
+            _database.SetConnection(source);
             textchanged(sender, e);
-            source2.Close();
         }
 
         private void Form2_Activated(object sender, EventArgs e)
         {
-            selectdb();
+            updateCategories();
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -1412,12 +992,10 @@ namespace YouWrite
             var spaceposp = 0;
 
             for (var i = 0; i < pos; i++)
-                //  MessageBox.Show(richTextBox1.Text.ToCharArray()[i].ToString());
                 if (advancedTextEditor1.TextEditor.Text.ToCharArray()[i].Equals(' '))
                 {
                     spaceposp = spacepos;
                     spacepos = i;
-                    // MessageBox.Show("space");
                 }
         }
 
@@ -1446,15 +1024,11 @@ namespace YouWrite
 
         private void getcontext(int idp, int refn, int nb, string reft)
         {
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
 
             sql_cmd.CommandText = "select id,phrase from phrase  where phrase like '%[" + refn + "]%' and idp =" + idp;
 
-            var DB = new SQLiteDataAdapter(sql_cmd);
-            var DS = new DataSet();
-            DS.Reset();
-            DB.Fill(DS);
-            var DT = DS.Tables[0];
+            var DT= _database.ExecuteSelect(sql_cmd);
 
             var txt = "";
 
@@ -1470,16 +1044,13 @@ namespace YouWrite
                 {
                     dr = DT.Rows[i];
 
-                    sql_cmd = sql_con.CreateCommand();
+                    sql_cmd = new SQLiteCommand();
 
                     sql_cmd.CommandText = "select phrase  from phrase  where id >=   " +
                                           (Convert.ToInt32(dr[0].ToString()) - nb) + " and id <= " +
                                           (Convert.ToInt32(dr[0].ToString()) + nb) + " and idp=" + idp;
-                    DB2 = new SQLiteDataAdapter(sql_cmd);
-                    DS2 = new DataSet();
-                    DS2.Reset();
-                    DB2.Fill(DS2);
-                    DT2 = DS2.Tables[0];
+
+                    DT2 = _database.ExecuteSelect(sql_cmd);
 
 
                     if (DT2.Rows.Count > 0)
@@ -1487,11 +1058,9 @@ namespace YouWrite
                         {
                             dr2 = DT2.Rows[j];
                             txt += dr2[0].ToString();
-                            // richTextBox3.Text += dr2[0].ToString();
                         }
 
                     txt += Environment.NewLine + "..." + Environment.NewLine;
-                    //  richTextBox3.Text += System.Environment.NewLine + "..." + System.Environment.NewLine + reft + System.Environment.NewLine;
                 }
             }
 
@@ -1502,39 +1071,26 @@ namespace YouWrite
                 var p = new Point(0, hightc3);
                 uc.Location = p;
                 var nblines = txt.Length / 115 + 2;
-                // if (nblines > 12)
-                //{
-                //   nblines = 12;
-                //}
-                var lhight = nblines * 17;
-                //if (lhight > 85)
-                //{
-                uc.Size = new Size(uc.Size.Width, uc.Size.Height + lhight + 30);
-                // uc.sety(uc.Size.Height + lhight);
 
-                //}
+                var lhight = nblines * 17;
+
+                uc.Size = new Size(uc.Size.Width, uc.Size.Height + lhight + 30);
+
                 uc.highlight("[" + refn + "]");
 
 
                 panel4.Controls.Add(uc);
                 hightc3 += uc.Size.Height;
             }
-
-
-            //richTextBox3.Text += System.Environment.NewLine + "------------------------------------------------------------" + System.Environment.NewLine;
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            sql_cmd = sql_con.CreateCommand();
+            sql_cmd = new SQLiteCommand();
 
             sql_cmd.CommandText = "select idp,refn,reft  from ref  where reft like '%" + textBox3.Text + "%' ";
 
-            var DB = new SQLiteDataAdapter(sql_cmd);
-            var DS = new DataSet();
-            DS.Reset();
-            DB.Fill(DS);
-            var DT = DS.Tables[0];
+            var DT= _database.ExecuteSelect(sql_cmd);
 
             richTextBox3.Text = "";
             panel4.Controls.Clear();
@@ -1748,29 +1304,14 @@ namespace YouWrite
             if (s.Split(' ').Count() > 3)
             {
                 label17.Text = s.Split(' ')[1] + "..." + s.Split(' ')[3].Split('.', ',', '!', '?')[0];
-                //MessageBox.Show(s.Split(' ')[1]);
-                //MessageBox.Show(s.Split(' ')[2]);
-                //MessageBox.Show(s.Split(' ')[3]);
-                var sql_cmd2 = sql_con.CreateCommand();
-                //SetConnection();
-                //SQLiteParameter word11 = new SQLiteParameter("@word11", SqlDbType.Text) { Value = word1 };
-                //SQLiteParameter word22 = new SQLiteParameter("@word22", SqlDbType.Text) { Value = word2 };
+
+                var sql_cmd2 = new SQLiteCommand();
 
                 sql_cmd2.CommandText = "select word2 from tgram where word1 like '" + s.Split(' ')[1] +
                                        "' and word3 like '" + s.Split(' ')[3].Split('.', ',', '!', '?')[0] +
                                        "' order by freq desc LIMIT 0, 100";
 
-                // MessageBox.Show(sql_cmd2.CommandText);
-                //sql_cmd.Parameters.Add(word11);
-                //sql_cmd.Parameters.Add(word22);
-
-                var DB4 = new SQLiteDataAdapter(sql_cmd2);
-                var DS4 = new DataSet();
-                DS4.Reset();
-                DB4.Fill(DS4);
-                var DT4 = new DataTable();
-                DT4 = DS4.Tables[0];
-
+                var DT4 = _database.ExecuteSelect(sql_cmd2);
 
                 if (DT4.Rows.Count > 0)
                 {
@@ -1807,15 +1348,11 @@ namespace YouWrite
 
         private void advancedTextEditor1_Load_1(object sender, EventArgs e)
         {
-
         }
 
         private void Form2_FormClosed(object sender, FormClosedEventArgs e)
         {
-            sql_con.Close();
+            _database.CloseAllConnections();
         }
-
-       
-
     }
 }
