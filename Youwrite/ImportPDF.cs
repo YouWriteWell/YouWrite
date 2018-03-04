@@ -47,6 +47,7 @@ namespace YouWrite
 
         private SQLiteConnection sql_con;
 
+        private Import _import;
         public Form4()
         {
             InitializeComponent();
@@ -64,10 +65,15 @@ namespace YouWrite
 
         public Form4(string category, int id)
         {
+            
+
             InitializeComponent();
+            _import = new Import(id);
+
+            _import.setstate += new Import.CallbackEventHandler(setstate);
             idc = id;
             dir = Directory.GetCurrentDirectory();
-
+            
             var dbName = Path.Combine(Environment.GetFolderPath(
                     Environment.SpecialFolder.ApplicationData), "YouWrite", id + ".db");
 
@@ -193,7 +199,7 @@ namespace YouWrite
                     if (f.Split('.').Count() >= 2 && f.Split('.')[f.Split('.').Count() - 1] == "pdf")
                     {
                         filename = f;
-                        loaddata(i);
+                         _import.importPDF(i, filename);
                         i++;
                     }
 
@@ -432,19 +438,28 @@ namespace YouWrite
             source.Close();
         }
 
-        private void setstate(int curr, int max, int papern)
+        private void setstate(int curr, int max, int papern,string msg)
         {
+            if (msg == "")
+            {
+                
+            
             int p;
             p = curr * 100 / max;
-            if (p >= pp + 5)
+            if (p >= pp + 20)
             {
                 DT2.Rows[papern][2] = p.ToString("0.00") + "%";
 
                 dataGridView1.DataSource = DT2;
                 pp = p;
             }
-
             if (pp == 100) pp = 0;
+
+            }
+            else
+            {
+                DT2.Rows[papern][2] = msg;
+            }
         }
 
         //add 3-gram
@@ -588,11 +603,13 @@ namespace YouWrite
                     s3 = Form2.removes(sentence);
                     // MessageBox.Show("I'm here working/" + s3.Normalize() + "===>" + s3.Length.ToString());
                     i++;
-                    setstate(i, nbs, pn);
-                    var id = (int) Invoke((aaddphrase) AddPhrase, s3, idp); //AddPhrase(s3);
+                    setstate(i, nbs, pn,"");
+                    // var id = (int) Invoke((aaddphrase) AddPhrase, s3, idp); //AddPhrase(s3);
+                    var id = AddPhrase(s3, idp); //AddPhrase(s3);
                     var tokens = TokenizeSentence(s3);
 
-                    if (tokens.Count() >= 2) Invoke((iinsertword) InsertWords, tokens, id);
+                    // if (tokens.Count() >= 2) Invoke((iinsertword) InsertWords, tokens, id);
+                    if (tokens.Count() >= 2) InsertWords( tokens, id);
 
                     if (sentence.Contains("References") || sentence.Contains("REFERENCES"))
                     {

@@ -106,7 +106,11 @@ namespace YouWrite
         {
             source.Close();
             source2.Close();
-            _sql_con.Close();
+            if (_sql_con != null)
+            {
+                _sql_con.Close();
+
+            }
         }
 
 
@@ -117,6 +121,11 @@ namespace YouWrite
             sql_cmd.ExecuteNonQuery();
         }
 
+        public void ExecuteQuery(SQLiteCommand cmd)
+        {
+            cmd.Connection = _sql_con;
+            cmd.ExecuteNonQuery();
+        }
 
         public void createdb(string name, string description)
         {
