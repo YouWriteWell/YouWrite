@@ -546,14 +546,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouWrite.exe" size="265216">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouWrite.exe" size="265728">
       <assemblyIdentity name="YouWrite" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8G/Rc86Iw2tWi5OyJpqZxxuOmog=</dsig:DigestValue>
+        <dsig:DigestValue>X8vZ8N9a2lWNY6ikTiwuWVuywlY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

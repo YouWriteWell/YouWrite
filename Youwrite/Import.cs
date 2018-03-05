@@ -58,8 +58,42 @@ namespace YouWrite
             _database.SetConnection(source);
             _refsExtractor=new RefsExtractor(_database);
             mModelPath = _appDir + @"\";
+            if (mTokenizer == null) mTokenizer = new EnglishMaximumEntropyTokenizer(mModelPath + "EnglishTok.nbin");
+
+            initialCommands();
         }
 
+        private SQLiteCommand commandPhrase;
+        private SQLiteCommand CommandBgrams;
+        private SQLiteCommand CommandTgrams;
+        void initialCommands()
+        {
+            commandPhrase =
+                new SQLiteCommand("insert into  phrase (phrase,idp,cha) values (@phrase,@idp,@cha)");
+            commandPhrase.Parameters.AddRange(new[]
+            {
+                new SQLiteParameter("@phrase", "" ),
+                new SQLiteParameter("@idp", 0),
+                new SQLiteParameter("@cha", 0)
+            });
+
+            CommandBgrams =
+                new SQLiteCommand("insert into  bgram (word1,word2,freq) values (@word1,@word2,0)");
+            CommandBgrams.Parameters.AddRange(new[]
+            {
+                new SQLiteParameter("@word1", ""),
+                new SQLiteParameter("@word2", "")
+            });
+
+            CommandTgrams =
+                new SQLiteCommand("insert into  tgram (word1,word2,word3,freq) values (@word1,@word2,@word3,0)");
+            CommandTgrams.Parameters.AddRange(new[]
+            {
+                new SQLiteParameter("@word1", ""),
+                new SQLiteParameter("@word2", ""),
+                new SQLiteParameter("@word3", "")
+            });
+        }
 
         public DataTable listfiles(string foldername,string extension)
         {
@@ -134,15 +168,10 @@ namespace YouWrite
         //add 2-gram
         private int Add(string word1, string word2)
         {
-            var CommandText =
-                new SQLiteCommand("insert into  bgram (word1,word2,freq) values (@word1,@word2,0)");
-            CommandText.Parameters.AddRange(new[]
-            {
-                new SQLiteParameter("@word1", word1),
-                new SQLiteParameter("@word2", word2)
-            });
-
-            _database.ExecuteQuery(CommandText);
+            
+            CommandBgrams.Parameters["@word1"].Value = word1;
+            CommandBgrams.Parameters["@word2"].Value = word2;
+            _database.ExecuteQuery(CommandBgrams);
             var sql_cmd= new SQLiteCommand();
             sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
             var DT=_database.ExecuteSelect(sql_cmd);
@@ -160,16 +189,12 @@ namespace YouWrite
         private int Add(string word1, string word2, string word3)
         {
 
-            var CommandText =
-                new SQLiteCommand("insert into  tgram (word1,word2,word3,freq) values (@word1,@word2,@word3,0)");
-            CommandText.Parameters.AddRange(new[]
-            {
-                new SQLiteParameter("@word1", word1),
-                new SQLiteParameter("@word2", word2),
-                new SQLiteParameter("@word3", word3)
-            });
-
-            _database.ExecuteQuery(CommandText);
+            
+            CommandTgrams.Parameters["@word1"].Value = word1;
+            CommandTgrams.Parameters["@word2"].Value = word2;
+            CommandTgrams.Parameters["@word3"].Value = word3;
+ 
+            _database.ExecuteQuery(CommandTgrams);
 
             var sql_cmd= new SQLiteCommand();
             sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
@@ -199,15 +224,11 @@ namespace YouWrite
         private int AddPhrase(string phrase, int idp)
         {
            
-            var CommandText =
-                new SQLiteCommand("insert into  phrase (phrase,idp,cha) values (@phrase,@idp,@cha)");
-            CommandText.Parameters.AddRange(new[]
-            {
-                new SQLiteParameter("@phrase", phrase),
-                new SQLiteParameter("@idp", idp),
-                new SQLiteParameter("@cha", chapter)
-            });
-            _database.ExecuteQuery(CommandText);
+            commandPhrase.Parameters["@phrase"].Value = phrase;
+            commandPhrase.Parameters["@idp"].Value = idp;
+            commandPhrase.Parameters["@cha"].Value = chapter;
+
+            _database.ExecuteQuery(commandPhrase);
 
                 var sql_cmd= new SQLiteCommand();
                 sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
@@ -425,11 +446,16 @@ namespace YouWrite
                     s3 = removes(sentence);
                     i++;
                     setstate(i, nbs, pn,"");
-                    var id =  AddPhrase(s3, idp);
+
+                   
+                        var id =  AddPhrase(s3, idp);
                     var tokens = TokenizeSentence(s3);
 
-                    if (tokens.Count() >= 2) InsertWords(tokens, id);
-
+                    if (tokens.Count() >= 2)
+                    {
+                            InsertWords(tokens, id);
+                    }
+                  
                     if (sentence.Contains("References") || sentence.Contains("REFERENCES"))
                     {
                         refe = true;
@@ -486,7 +512,6 @@ namespace YouWrite
 
         public string[] TokenizeSentence(string sentence)
         {
-            if (mTokenizer == null) mTokenizer = new EnglishMaximumEntropyTokenizer(mModelPath + "EnglishTok.nbin");
 
             return mTokenizer.Tokenize(sentence);
         }

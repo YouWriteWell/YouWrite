@@ -18,6 +18,7 @@ namespace YouWrite
         private string _databasesDir;
         private SQLiteConnection _sql_con;
         private SQLiteConnection _sql_con_file;
+        private SQLiteTransaction _transaction;
         public bool connectionEstablished = false; 
 
         public Databases(string appDir,string databasesDir)
@@ -50,11 +51,10 @@ namespace YouWrite
             
             _sql_con = new SQLiteConnection("Data Source=:memory:");
             _sql_con.Open();
-
-            // copy db file to memory
+                 // copy db file to memory
 
             _sql_con_file.BackupDatabase(_sql_con, "main", "main", -1, null, 0);
-
+            //_transaction = _sql_con.BeginTransaction();
             _sql_con_file.Close();
         }
 
@@ -66,7 +66,10 @@ namespace YouWrite
             _sql_con_file.Open();
 
             // save memory db to file
+          //  _transaction.Commit();
             _sql_con.BackupDatabase(_sql_con_file, "main", "main", -1, null, 0);
+            
+
             _sql_con_file.Close();
         }
         public DataTable getCategories()
@@ -88,7 +91,7 @@ namespace YouWrite
         public DataTable ExecuteSelect(SQLiteCommand cmd)
         {
             bool close= false;
-            if (cmd.Connection != null) {
+            if (cmd.Connection != null && cmd.Connection != _sql_con) {
                 cmd.Connection.Open();
                 close = true;
             }
@@ -130,8 +133,6 @@ namespace YouWrite
 
         public void ExecuteQuery(string txtQuery)
         {
-             
-
             var sql_cmd = _sql_con.CreateCommand();
             sql_cmd.CommandText = txtQuery;
             sql_cmd.ExecuteNonQuery();
@@ -139,9 +140,13 @@ namespace YouWrite
 
         public void ExecuteQuery(SQLiteCommand cmd)
         {
-            if (cmd.Connection == null)
-            {  
-                cmd.Connection = _sql_con;
+            if (cmd.Connection == null || cmd.Connection == _sql_con)
+            {
+                if (cmd.Connection == null)
+                {
+                    cmd.Connection = _sql_con;
+                }
+
                 cmd.ExecuteNonQuery();
             }
             else
