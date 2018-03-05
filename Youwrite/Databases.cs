@@ -179,7 +179,6 @@ namespace YouWrite
                 id = Convert.ToInt32(dr[0].ToString());
                 string dbName = Path.Combine(Environment.GetFolderPath(
                         Environment.SpecialFolder.ApplicationData), "YouWrite", id + ".db");
-                MessageBox.Show(dbName);
                 File.Copy(_databasesDir + @"\model.db", dbName, true);
             }
             return id; 

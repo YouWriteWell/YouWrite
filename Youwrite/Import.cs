@@ -26,6 +26,7 @@ namespace YouWrite
         private string _databasesDir;
         private Databases _database;
         private int _categoryID;
+        private RefsExtractor _refsExtractor;
 
         private readonly string cat;
         private int chapter;
@@ -37,11 +38,6 @@ namespace YouWrite
 
         private int pp;
         private DialogResult result;
-        private readonly SQLiteConnection source;
-        private SQLiteCommand sql_cmd;
-
-        private SQLiteConnection sql_con;
-
         public delegate void CallbackEventHandler(int curr, int max, int papern, string msg);
         public event CallbackEventHandler setstate;
        
@@ -55,12 +51,12 @@ namespace YouWrite
             var dbName = Path.Combine(Environment.GetFolderPath(
                     Environment.SpecialFolder.ApplicationData), "YouWrite", _categoryID + ".db");
 
-            source = new SQLiteConnection
+            var source = new SQLiteConnection
                 ("Data Source=" + dbName + ";Version=3;New=False;Compress=True;");
 
             _database= new Databases(_appDir, _databasesDir);
             _database.SetConnection(source);
-
+            _refsExtractor=new RefsExtractor(_database);
             mModelPath = _appDir + @"\";
         }
 
@@ -77,7 +73,7 @@ namespace YouWrite
             foreach (var f in Directory.GetFiles(foldername))
                 if (f.Split('.').Count() >= 2 && f.Split('.')[f.Split('.').Count() - 1] == extension)
                 {
-                    DT2.Rows.Add(i, f, " ");
+                    DT2.Rows.Add(i, Path.GetFileName(f), " ");
                     i++;
 
                 }
@@ -105,11 +101,9 @@ namespace YouWrite
             {
                 var dr = DT.Rows[0];
                 var id = Convert.ToInt32(dr[0].ToString());
-                // sql_con.Close();
+                
                 return id;
             }
-
-            // sql_con.Close();
             return -1;
         }
 
@@ -137,11 +131,11 @@ namespace YouWrite
             return -1;
         }
 
-
+        //add 2-gram
         private int Add(string word1, string word2)
         {
             var CommandText =
-                new SQLiteCommand("insert into  bgram (word1,word2,freq) values (@word1,@word2,0)", sql_con);
+                new SQLiteCommand("insert into  bgram (word1,word2,freq) values (@word1,@word2,0)");
             CommandText.Parameters.AddRange(new[]
             {
                 new SQLiteParameter("@word1", word1),
@@ -167,8 +161,7 @@ namespace YouWrite
         {
 
             var CommandText =
-                new SQLiteCommand("insert into  tgram (word1,word2,word3,freq) values (@word1,@word2,@word3,0)",
-                    sql_con);
+                new SQLiteCommand("insert into  tgram (word1,word2,word3,freq) values (@word1,@word2,@word3,0)");
             CommandText.Parameters.AddRange(new[]
             {
                 new SQLiteParameter("@word1", word1),
@@ -207,16 +200,15 @@ namespace YouWrite
         {
            
             var CommandText =
-                new SQLiteCommand("insert into  phrase (phrase,idp,cha) values (@phrase,@idp,@cha)", sql_con);
+                new SQLiteCommand("insert into  phrase (phrase,idp,cha) values (@phrase,@idp,@cha)");
             CommandText.Parameters.AddRange(new[]
             {
                 new SQLiteParameter("@phrase", phrase),
                 new SQLiteParameter("@idp", idp),
                 new SQLiteParameter("@cha", chapter)
             });
-            try
-            {
-                CommandText.ExecuteNonQuery();
+            _database.ExecuteQuery(CommandText);
+
                 var sql_cmd= new SQLiteCommand();
                 sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
                 var DT=_database.ExecuteSelect(sql_cmd);
@@ -227,10 +219,6 @@ namespace YouWrite
                     var id = Convert.ToInt32(dr[0].ToString());
                     return id;
                 }
-            }
-            catch
-            {
-            }
             return -1;
         }
 
@@ -238,8 +226,7 @@ namespace YouWrite
         private void AddPhraseGram(int idp, int idg, int type)
         {
             var CommandText =
-                new SQLiteCommand("insert into  grampaper (idp,idg,type) values (" + idp + "," + idg + "," + type + ")",
-                    sql_con);
+                new SQLiteCommand("insert into  grampaper (idp,idg,type) values (" + idp + "," + idg + "," + type + ")");
             _database.ExecuteQuery(CommandText);
         }
 
@@ -295,90 +282,7 @@ namespace YouWrite
                 word2 = word3;
             }
         }
-
-
-        private void addref(int idp, string reft, int refn)
-        {
-
-            var cmd = new SQLiteCommand("insert into  ref (idp,reft,refn,cha) values (@idp,@reft,@refn,@cha)");
-            cmd.Parameters.AddRange(new[]
-            {
-                new SQLiteParameter("@idp", idp),
-                new SQLiteParameter("@reft", reft),
-                new SQLiteParameter("@refn", refn),
-                new SQLiteParameter("@cha", chapter)
-            });
-
-           _database.ExecuteQuery(cmd);
-        }
-
-        private void addrefs(string refes, int idp)
-        {
-            var k = 1;
-            var cont = true;
-            int pos1, pos2;
-            var startindex = 0;
-
-            var pattern1 = @"[References|REFERENCES][ ]+\[[0-9]+\] ";
-
-
-            if (Regex.IsMatch(refes, pattern1))
-                while (cont)
-                {
-                    pos1 = refes.IndexOf("[" + k + "]", startindex);
-                    startindex = pos1;
-                    pos2 = refes.IndexOf("[" + (k + 1) + "]", startindex);
-                    startindex = pos2;
-                    if (pos2 >= 1 && pos1 >= 1)
-                    {
-                        addref(idp, refes.Substring(pos1, pos2 - pos1), k);
-                    }
-                    else if (pos1 >= 1)
-                    {
-                        addref(idp, refes.Substring(pos1), k);
-                        cont = false;
-                    }
-                    else
-                    {
-                        cont = false;
-                    }
-
-                    k++;
-                }
-            else
-                while (cont)
-                {
-                    pos1 = refes.IndexOf(k + ". ", startindex);
-                    startindex = pos1;
-                    if (pos1 < 0)
-                    {
-                        // If we don't extract the reference we councel the referencing process Look last else
-                        pos2 = -1;
-                    }
-                    else
-                    {
-                        pos2 = refes.IndexOf(k + 1 + ". ", startindex);
-                        startindex = pos2;
-                    }
-
-                    if (pos2 >= 1 && pos1 >= 1)
-                    {
-                        addref(idp, refes.Substring(pos1, pos2 - pos1), k);
-                    }
-                    else if (pos1 >= 1)
-                    {
-                        addref(idp, refes.Substring(pos1), k);
-                        cont = false;
-                    }
-                    else
-                    {
-                        cont = false;
-                    }
-
-                    k++;
-                }
-        }
-
+      
 
         //ignore this caracters 
         private bool ignore(string s)
@@ -482,7 +386,7 @@ namespace YouWrite
 
                 var text = GetText(filename);
                 //insert paper information
-                var Command = new SQLiteCommand("insert into  paper (title) values ('" + filename + "')", sql_con);
+                var Command = new SQLiteCommand("insert into  paper (title) values ('" + filename + "')");
                 _database.ExecuteQuery(Command);
                 var sql_cmd = new SQLiteCommand();
 
@@ -549,7 +453,7 @@ namespace YouWrite
 
                     if ((nbletters >= 500 || nbsentences >= sentences.Length) && refe)
                     {
-                        addrefs(refes, idp);
+                        _refsExtractor.addrefs(refes, idp,chapter);
 
                         nbref++;
                         chapter++;

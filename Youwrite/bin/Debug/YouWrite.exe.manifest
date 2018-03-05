@@ -4,7 +4,7 @@
   <description asmv2:iconFile="favicon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="YouWrite" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="YouWrite" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
     <commandLine file="YouWrite.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -546,14 +546,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouWrite.exe" size="264704">
-      <assemblyIdentity name="YouWrite" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="YouWrite.exe" size="265216">
+      <assemblyIdentity name="YouWrite" version="1.0.0.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>A0UgavoRV+k1Sd/TUdz4WwViCQ4=</dsig:DigestValue>
+        <dsig:DigestValue>8G/Rc86Iw2tWi5OyJpqZxxuOmog=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

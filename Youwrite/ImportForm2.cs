@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -36,8 +37,12 @@ namespace YouWrite
             _import = new Import(id);
 
             _import.setstate += new Import.CallbackEventHandler(setstate);
-            
-            Text = "Import "+ _extension + " documents (" + category + ")";
+
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+
+            Text = "Import "+ textInfo.ToUpper(_extension) + " documents (" + category + ")";
+            label1.Text = textInfo.ToUpper(_extension) + " Files";
         }
 
      
@@ -48,7 +53,8 @@ namespace YouWrite
             if (result == DialogResult.OK)
             {
                 foldername = folderBrowserDialog1.SelectedPath;
-                ListOfFiles= _import.listfiles(foldername, _extension);
+                textBox1.Text = foldername;
+                ListOfFiles = _import.listfiles(foldername, _extension);
                 dataGridView1.DataSource = ListOfFiles;
 
             }
@@ -109,6 +115,9 @@ namespace YouWrite
             }
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

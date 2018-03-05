@@ -342,7 +342,7 @@
             charStyle1.Strikeout = false;
             charStyle1.Underline = false;
             this.TextEditor.SelectionCharStyle = charStyle1;
-            this.TextEditor.SelectionFont2 = new System.Drawing.Font("Times New Roman", 2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
+            this.TextEditor.SelectionFont2 = new System.Drawing.Font("Times New Roman", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
             paraLineSpacing1.ExactSpacing = 0;
             paraLineSpacing1.SpacingStyle = ExtendedRichTextBox.ParaLineSpacing.LineSpacingStyle.Unknown;
             this.TextEditor.SelectionLineSpacing = paraLineSpacing1;
@@ -744,7 +744,7 @@
             // mnuAbout
             // 
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(152, 22);
+            this.mnuAbout.Size = new System.Drawing.Size(107, 22);
             this.mnuAbout.Text = "About";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 

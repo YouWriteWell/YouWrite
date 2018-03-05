@@ -1,1 +1,6 @@
+V 1.0.0.2: 
+- Source Code more organized
+- Enhance the import interface
+
 This is Version 1.0.0.0 of YouWrite.  
+

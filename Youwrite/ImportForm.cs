@@ -21,7 +21,7 @@ namespace YouWrite
         public Form3()
         {
             InitializeComponent();
-            comboBox2.SelectedIndex = 1;
+            comboBox2.SelectedIndex = 0;
             _databasesDir = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.ApplicationData), "YouWrite");
             _appDir = Directory.GetCurrentDirectory();
