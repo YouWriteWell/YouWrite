@@ -38,8 +38,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.ImportPDF = new System.Windows.Forms.Button();
-            this.ImportText = new System.Windows.Forms.Button();
-            this.ImportSRT = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -117,41 +117,42 @@
             // 
             // ImportPDF
             // 
-            this.ImportPDF.Location = new System.Drawing.Point(163, 409);
+            this.ImportPDF.Location = new System.Drawing.Point(417, 409);
             this.ImportPDF.Name = "ImportPDF";
             this.ImportPDF.Size = new System.Drawing.Size(75, 23);
             this.ImportPDF.TabIndex = 8;
-            this.ImportPDF.Text = "PDF files";
+            this.ImportPDF.Text = "Next";
             this.ImportPDF.UseVisualStyleBackColor = true;
             this.ImportPDF.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ImportText
+            // comboBox2
             // 
-            this.ImportText.Location = new System.Drawing.Point(262, 409);
-            this.ImportText.Name = "ImportText";
-            this.ImportText.Size = new System.Drawing.Size(75, 23);
-            this.ImportText.TabIndex = 9;
-            this.ImportText.Text = "Text files";
-            this.ImportText.UseVisualStyleBackColor = true;
-            this.ImportText.Click += new System.EventHandler(this.button2_Click);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "pdf",
+            "txt",
+            "srt"});
+            this.comboBox2.Location = new System.Drawing.Point(191, 353);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 13;
             // 
-            // ImportSRT
+            // label4
             // 
-            this.ImportSRT.Location = new System.Drawing.Point(354, 409);
-            this.ImportSRT.Name = "ImportSRT";
-            this.ImportSRT.Size = new System.Drawing.Size(75, 23);
-            this.ImportSRT.TabIndex = 12;
-            this.ImportSRT.Text = "SRT files";
-            this.ImportSRT.UseVisualStyleBackColor = true;
-            this.ImportSRT.Click += new System.EventHandler(this.button5_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(125, 358);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Type of files";
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 494);
-            this.Controls.Add(this.ImportSRT);
-            this.Controls.Add(this.ImportText);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.ImportPDF);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label3);
@@ -181,7 +182,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button ImportPDF;
-        private System.Windows.Forms.Button ImportText;
-        private System.Windows.Forms.Button ImportSRT;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label4;
     }
 }

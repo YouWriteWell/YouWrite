@@ -23,26 +23,21 @@ namespace YouWrite
         private DialogResult result;
        
         private Import _import;
+        private string _extension;
+       
 
         private DataTable ListOfFiles;  
 
-        public Form4(string category, int id)
+        public Form4(string category, int id,string extension)
         {
-            
 
+            _extension = extension;
             InitializeComponent();
             _import = new Import(id);
 
             _import.setstate += new Import.CallbackEventHandler(setstate);
             
-            
-            var dbName = Path.Combine(Environment.GetFolderPath(
-                    Environment.SpecialFolder.ApplicationData), "YouWrite", id + ".db");
-
-            SQLiteConnection source = new SQLiteConnection
-                ("Data Source=" + dbName + ";Version=3;New=False;Compress=True;");
-
-            Text = "Import documents (" + category + ")";
+            Text = "Import "+ _extension + " documents (" + category + ")";
         }
 
      
@@ -53,7 +48,7 @@ namespace YouWrite
             if (result == DialogResult.OK)
             {
                 foldername = folderBrowserDialog1.SelectedPath;
-                ListOfFiles= _import.listfiles(foldername, "pdf");
+                ListOfFiles= _import.listfiles(foldername, _extension);
                 dataGridView1.DataSource = ListOfFiles;
 
             }
@@ -68,12 +63,14 @@ namespace YouWrite
                 var i = 0;
                 string filename;
                 foreach (var f in Directory.GetFiles(foldername))
-                    if (f.Split('.').Count() >= 2 && f.Split('.')[f.Split('.').Count() - 1] == "pdf")
+                    if (f.Split('.').Count() >= 2 && f.Split('.')[f.Split('.').Count() - 1] == _extension)
                     {
                         filename = f;
-                         _import.importPDF(i, filename);
+                         _import.import(i, filename);
                         i++;
                     }
+
+                _import.CloseImport();
                 MessageBox.Show("Opearation completed !");
             }
         }

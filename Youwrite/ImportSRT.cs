@@ -582,7 +582,6 @@ namespace YouWrite
                     text = Encoding.UTF8.GetString(bytes);
                     //  MessageBox.Show(text);
                 }
-
                 //PDDocument doc = PDDocument.load(filename);
                 //PDFTextStripper stripper = new PDFTextStripper("UTF-8");
                 // MessageBox.Show(stripper.getText(doc));

@@ -5,6 +5,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 using sun.io;
 
 
@@ -12,11 +13,11 @@ namespace YouWrite
 {
     class Databases
     {
-        private SQLiteConnection source; // model.db
         private SQLiteConnection source2; // categories.db
         private string _appDir;
         private string _databasesDir;
         private SQLiteConnection _sql_con;
+        private SQLiteConnection _sql_con_file;
         public bool connectionEstablished = false; 
 
         public Databases(string appDir,string databasesDir)
@@ -37,42 +38,47 @@ namespace YouWrite
             source2 = new SQLiteConnection
                 ("Data Source=" + Path.Combine(databasesDir, "categories.db") + ";Version=3;New=False;Compress=True;");
 
-            source = new SQLiteConnection
-                ("Data Source=" + Path.Combine(databasesDir, "model.db") + ";Version=3;New=False;Compress=True;");
-
-
-
         }
 
         public void SetConnection(SQLiteConnection sourcep)
         {
-            source = sourcep;
-            source.Open();
+            _sql_con_file = sourcep;
+            _sql_con_file.Open();
             if (_sql_con != null) _sql_con.Close();
 
             connectionEstablished = true;
+            
             _sql_con = new SQLiteConnection("Data Source=:memory:");
             _sql_con.Open();
 
             // copy db file to memory
 
-            source.BackupDatabase(_sql_con, "main", "main", -1, null, 0);
+            _sql_con_file.BackupDatabase(_sql_con, "main", "main", -1, null, 0);
 
-            source.Close();
+            _sql_con_file.Close();
         }
 
+        public void CloseConnection()
+        {
+
+            // save the  ram copy to file
+
+            _sql_con_file.Open();
+
+            // save memory db to file
+            _sql_con.BackupDatabase(_sql_con_file, "main", "main", -1, null, 0);
+            _sql_con_file.Close();
+        }
         public DataTable getCategories()
         {
-           source2.Open();
+          
 
            SQLiteCommand sql_cmd = source2.CreateCommand();
            sql_cmd.CommandText = @"select id,name from category";
-           SQLiteDataAdapter DB = new SQLiteDataAdapter(sql_cmd);
-           DataSet DS=new DataSet();
-           DB.Fill(DS);
-           DataTable DT2 = DS.Tables[0];
+          
+            DataTable DT2 = ExecuteSelect(sql_cmd);
 
-           source2.Close();
+          
 
 
            return DT2;
@@ -81,30 +87,38 @@ namespace YouWrite
 
         public DataTable ExecuteSelect(SQLiteCommand cmd)
         {
-            cmd.Connection = _sql_con;
+            bool close= false;
+            if (cmd.Connection != null) {
+                cmd.Connection.Open();
+                close = true;
+            }
+            else
+            {
+                cmd.Connection = _sql_con;
+            }
+
+            
             var DB = new SQLiteDataAdapter(cmd);
             var DS = new DataSet();
             var DT = new DataTable();
             DB.Fill(DS);
             DT = DS.Tables[0];
 
+            if (close)
+            {
+                cmd.Connection.Close();
+            }
+
             return DT;
         }
 
 
-        public void CloseConnection()
-        {
-            source.Open();
-
-            // save memory db to file
-            _sql_con.BackupDatabase(source, "main", "main", -1, null, 0);
-            source.Close();
-        }
+        
 
 
         public void CloseAllConnections()
         {
-            source.Close();
+          
             source2.Close();
             if (_sql_con != null)
             {
@@ -116,6 +130,8 @@ namespace YouWrite
 
         public void ExecuteQuery(string txtQuery)
         {
+             
+
             var sql_cmd = _sql_con.CreateCommand();
             sql_cmd.CommandText = txtQuery;
             sql_cmd.ExecuteNonQuery();
@@ -123,33 +139,50 @@ namespace YouWrite
 
         public void ExecuteQuery(SQLiteCommand cmd)
         {
-            cmd.Connection = _sql_con;
-            cmd.ExecuteNonQuery();
+            if (cmd.Connection == null)
+            {  
+                cmd.Connection = _sql_con;
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+                cmd.Connection.Close();
+
+            }
+            
         }
 
-        public void createdb(string name, string description)
-        {
-            var CommandText =
-                new SQLiteCommand(
-                    "insert into  category (name,description) values ('" + name + "','" + description + "')", _sql_con);
-            CommandText.ExecuteNonQuery();
-            var sql_cmd = _sql_con.CreateCommand();
-            sql_cmd.CommandText = @"select last_insert_rowid() as rowid";
-            var DB = new SQLiteDataAdapter(sql_cmd);
-            var DS = new DataSet();
-            DB.Fill(DS);
-            DataTable DT = DS.Tables[0];
 
+
+
+
+        public int creatDB(string name, string description)
+        {
+
+           
+            var CommandText = source2.CreateCommand();
+
+            CommandText.CommandText="insert into  category (name,description) values ('" + name + "','" + description + "')";
+
+            ExecuteQuery(CommandText);
+
+            var sql_cmd = source2.CreateCommand();
+            sql_cmd.CommandText = @"select MAX(id) as rowid from category";
+
+            DataTable DT = ExecuteSelect(sql_cmd);
+            var id = -1;
             if (DT.Rows.Count > 0)
             {
                 var dr = DT.Rows[0];
-                var id = Convert.ToInt32(dr[0].ToString());
-                // sql_con.Close();
-                var dbName = Path.Combine(Environment.GetFolderPath(
+                id = Convert.ToInt32(dr[0].ToString());
+                string dbName = Path.Combine(Environment.GetFolderPath(
                         Environment.SpecialFolder.ApplicationData), "YouWrite", id + ".db");
-
+                MessageBox.Show(dbName);
                 File.Copy(_databasesDir + @"\model.db", dbName, true);
             }
+            return id; 
         }
 
 

@@ -10,6 +10,9 @@ using org.apache.pdfbox.pdmodel;
 using org.apache.pdfbox.util;
 using OpenNLP.Tools.SentenceDetect;
 using OpenNLP.Tools.Tokenize;
+using System.Text;
+
+
 
 namespace YouWrite
 {
@@ -54,6 +57,7 @@ namespace YouWrite
 
             source = new SQLiteConnection
                 ("Data Source=" + dbName + ";Version=3;New=False;Compress=True;");
+
             _database= new Databases(_appDir, _databasesDir);
             _database.SetConnection(source);
 
@@ -401,19 +405,82 @@ namespace YouWrite
             return s;
         }
 
-        public void importPDF(int pn,string filename)
+
+        public void CloseImport()
+        {
+            _database.CloseConnection();
+        } 
+
+        public string GetExtension(string f)
+        {
+            if (f.Split('.').Count() >= 2)
+            {
+                return f.Split('.')[f.Split('.').Count() - 1];
+            }
+            else
+            {
+                throw new System.ArgumentException("File without extension", "original");
+            }
+
+
+        }
+
+        public string GetText(string filename)
+        {
+            var extension = GetExtension(filename);
+            string text = "";
+            switch (extension)
+            {
+                  
+                case "txt":
+                    using (var streamReader = new StreamReader(filename, Encoding.UTF8))
+                    {
+                        text = streamReader.ReadToEnd();
+                    }
+
+                    return text;
+                    break;
+
+                case "srt":
+                    using (var streamReader = new StreamReader(filename, Encoding.ASCII, true))
+                    {
+                        streamReader.Peek();
+                        var textt = streamReader.ReadToEnd();
+                        var souceSrt = Regex.Split(textt,
+                            @"(?:\r?\n)*\d+\r?\n\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}\r?\n");
+                        text = string.Join("\n", souceSrt);
+                        var bytes = Encoding.Default.GetBytes(text);
+                        text = Encoding.UTF8.GetString(bytes);
+                    }
+
+                    return text;
+                    break;
+
+                case "pdf":
+                    var doc = PDDocument.load(filename);
+                    var stripper = new PDFTextStripper("UTF-8");
+                    text = stripper.getText(doc);
+                    return text;
+
+                    break;
+            }
+
+            throw new System.ArgumentException("File extension not supported", "original");
+
+            return "";
+        }
+
+        public void import(int pn,string filename)
         {
            
             var error = false;
             var nberr = 0;
             chapter = 1;
-         //   try
-          //  {
+            try
+            {
                 var nbref = 0;
-                var doc = PDDocument.load(filename);
-                var stripper = new PDFTextStripper("UTF-8");
-                var text = stripper.getText(doc);
 
+                var text = GetText(filename);
                 //insert paper information
                 var Command = new SQLiteCommand("insert into  paper (title) values ('" + filename + "')", sql_con);
                 _database.ExecuteQuery(Command);
@@ -493,21 +560,17 @@ namespace YouWrite
 
                     if (refe) refes += sentence;
                 }
-         /*   }
+           }
             catch (Exception ex)
             {
                 error = true;
                 setstate(-1,-1, pn, "Error: " + ex.Message);
                 nberr++;
-            }*/
+            }
         }
 
-        public string parseUsingPDFBox(string input)
-        {
-            var doc = PDDocument.load(input);
-            var stripper = new PDFTextStripper();
-            return stripper.getText(doc);
-        }
+
+       
 
         public string[] SplitSentences(string paragraph)
         {
@@ -522,6 +585,23 @@ namespace YouWrite
             if (mTokenizer == null) mTokenizer = new EnglishMaximumEntropyTokenizer(mModelPath + "EnglishTok.nbin");
 
             return mTokenizer.Tokenize(sentence);
+        }
+        public static Encoding GetEncoding(string filename)
+        {
+            // Read the BOM
+            var bom = new byte[4];
+            using (var file = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                file.Read(bom, 0, 4);
+            }
+
+            // Analyze the BOM
+            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
+            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
+            if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
+            if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
+            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return Encoding.UTF32;
+            return Encoding.ASCII;
         }
     }
 }
