@@ -204,28 +204,14 @@
     <Compile Include="ImportForm.Designer.cs">
       <DependentUpon>ImportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImportPDF.cs">
+    <Compile Include="ImportForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImportPDF.Designer.cs">
-      <DependentUpon>ImportPDF.cs</DependentUpon>
+    <Compile Include="ImportForm2.Designer.cs">
+      <DependentUpon>ImportForm2.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImportText.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImportText.Designer.cs">
-      <DependentUpon>ImportText.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImportSRT.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form7.Designer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ImportText.resx">
-      <DependentUpon>ImportText.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form7.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -315,8 +301,8 @@
       <DependentUpon>ImportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImportPDF.resx">
-      <DependentUpon>ImportPDF.cs</DependentUpon>
+    <EmbeddedResource Include="ImportForm2.resx">
+      <DependentUpon>ImportForm2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchUC.resx">

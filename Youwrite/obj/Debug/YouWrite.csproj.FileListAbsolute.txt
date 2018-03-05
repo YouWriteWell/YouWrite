@@ -149,8 +149,6 @@ C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\bin\Debug\sv\AutoUpdat
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\bin\Debug\tr\AutoUpdater.NET.resources.dll
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\bin\Debug\zh\AutoUpdater.NET.resources.dll
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.csprojResolveAssemblyReference.cache
-C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Form6.resources
-C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Form7.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Properties.Resources.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.AdvancedTextEditorControl.AdvancedTextEditor.resources
 C:\Users\Research\Desktop\minprojects\youwriteD2\YouWrite\obj\Debug\YouWrite.Dialogs.dlgFind.resources
