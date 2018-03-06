@@ -1,13 +1,13 @@
 # YouWrite [![YouWrite All Releases](https://img.shields.io/github/downloads/nhaouari/YouWrite/total.svg)](https://github.com/nhaouari/YouWrite/releases)
 
-YouWrite aims to make writing easier especially for scientific writing.  The main idea of YouWrite is to create an environment that is customized to the context of writing. 
+**YouWrite** aims to make writing easier especially scientific writing.  The main idea of YouWrite is to create an environment that is customized to the context of writing. 
 
-For that, YouWrite uses provided documents (PDFs, papers,books and so on) to index all words and phrases and then suggest the following options: 
+For that, **YouWrite** uses provided documents (PDFs, papers,books and so on) to index all words and phrases and then suggest the following options: 
 - Autocomplete (words bigrams and trigrams).
 - Search in all the indexed pdfs papers. Most of the papers references are indexed which make the search results more useful by showing exactly the reference. 
 - Search the citations of a specific paper using the indexed references and papers.
 
-YouWrite is still in its very early stage of development. Therefore, the application may be buggy. Feel free to [request functionalities, report issues, and ask questions](https://github.com/nhaouari/YouWrite/issues) or via our [facebook page](https://www.facebook.com/YouWrite-938406383000471/) .
+>**YouWrite** is still in its very early stage of development. Therefore, the application may be buggy. Feel free to [request functionalities, report issues, and ask questions](https://github.com/nhaouari/YouWrite/issues) or via our [facebook page](https://www.facebook.com/YouWrite-938406383000471/) .
 
 # Get Started
 [![Get Started](http://img.youtube.com/vi/YJNch1kYnFg/0.jpg)](http://www.youtube.com/watch?v=YJNch1kYnFg)
