@@ -7,7 +7,11 @@ For that, **YouWrite** uses provided documents (PDFs, papers,books and so on) to
 - Search in all the indexed pdfs papers. Most of the papers references are indexed which make the search results more useful by showing exactly the reference. 
 - Search the citations of a specific paper using the indexed references and papers.
 
->**YouWrite** is still in its very early stage of development. Therefore, the application may be buggy. Feel free to [request functionalities, report issues, and ask questions](https://github.com/nhaouari/YouWrite/issues) or via our [facebook page](https://www.facebook.com/YouWrite-938406383000471/) .
+# Follow Us
+* Facebook [Facebook page](https://www.facebook.com/YouWrite-938406383000471/) .
+* Researchgate [Project page](https://www.researchgate.net/project/YouWrite-Writing-Assistant-Tool)
+
+>**YouWrite** is still in its very early stage of development. Therefore, the application may be buggy. Feel free to [request functionalities, report issues, and ask questions](https://github.com/nhaouari/YouWrite/issues). 
 
 # Get Started
 [![Get Started](http://img.youtube.com/vi/YJNch1kYnFg/0.jpg)](http://www.youtube.com/watch?v=YJNch1kYnFg)
